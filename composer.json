@@ -1,0 +1,37 @@
+{
+	"name": "professional-wiki/wikibase-automated-values",
+	"type": "mediawiki-extension",
+	"description": "Automatic creation of Wikibase labels and aliases based on statement values",
+	"keywords": [
+		"MediaWiki",
+		"Wikibase"
+	],
+	"homepage": "https://github.com/ProfessionalWiki/AutomatedValues",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Professional.Wiki",
+			"email": "info@professional.wiki",
+			"homepage": "https://professional.wiki",
+			"role": "Creator"
+		},
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com",
+			"homepage": "https://www.EntropyWins.wtf",
+			"role": "Creator and lead developer"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"composer/installers": "^2|^1.0.1"
+	},
+	"require-dev": {
+		"vimeo/psalm": "^4.22.0",
+		"phpstan/phpstan": "^1.4.8",
+		"mediawiki/mediawiki-codesniffer": "38.0.0"
+	},
+	"extra": {
+		"installer-name": "AutomatedValues"
+	}
+}

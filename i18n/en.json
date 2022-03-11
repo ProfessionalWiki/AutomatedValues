@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeroen De Dauw"
+		]
+	},
+	"automated-values-name": "Automated Values",
+	"automated-values-description": "Automatic creation of Wikibase labels and aliases based on statement values"
+}

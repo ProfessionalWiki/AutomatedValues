@@ -1,0 +1,12 @@
+parameters:
+	level: 9
+	paths:
+		- src
+	scanDirectories:
+		- ../../includes
+		- ../../tests/phpunit
+		- ../../vendor
+		- ../../extensions/Wikibase
+	ignoreErrors:
+		- '#.+ no value type specified in iterable type .+#'
+

@@ -1,0 +1,190 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    strategy:
+      matrix:
+        include:
+          - mw: 'REL1_35'
+            php: 7.4
+          - mw: 'REL1_36'
+            php: 8.0
+          - mw: 'REL1_37'
+            php: 8.0
+          - mw: 'REL1_37'
+            php: 8.1
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          tools: composer
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}_v3
+
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer-php${{ matrix.php }}
+
+      - uses: actions/checkout@v2
+        with:
+            path: EarlyCopy
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} AutomatedValues
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/AutomatedValues
+
+      - run: composer update
+
+      - name: Run update.php
+        run: php maintenance/update.php --quick
+
+      - name: Run PHPUnit
+        run: php tests/phpunit/phpunit.php -c extensions/AutomatedValues/
+        if: matrix.php != 7.4
+
+      - name: Run PHPUnit with code coverage
+        run: php tests/phpunit/phpunit.php -c extensions/AutomatedValues/ --coverage-clover coverage.xml
+        if: matrix.php == 7.4
+
+      - name: Upload code coverage
+        run: bash <(curl -s https://codecov.io/bash)
+        if: matrix.php == 7.4
+
+  static-analysis:
+    name: "Static Analysis"
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          extensions: mbstring
+          tools: composer, cs2pr
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_static_analysis_v3
+
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer_static_analysis
+
+      - uses: actions/checkout@v2
+        with:
+            path: EarlyCopy
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_37 AutomatedValues
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/AutomatedValues
+
+      - run: composer update
+
+      - name: Composer install
+        run: cd extensions/AutomatedValues && composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: PHPStan
+        run: cd extensions/AutomatedValues && php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr
+
+# Le sigh. Giving up on getting this to work on GH Actions after spending nealy an hour on it.
+#      - name: Psalm
+#        run: cd extensions/AutomatedValues && pwd && php vendor/bin/psalm --config=psalm.xml --shepherd --stats
+#        if: true
+
+
+  code-style:
+    name: "Code style"
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki/extensions/AutomatedValues
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: mbstring, intl, php-ast
+          tools: composer
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_static_analysis
+
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer_static_analysis
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 AutomatedValues
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/AutomatedValues
+
+      - name: Composer install
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - run: vendor/bin/phpcs -p -s
+
+

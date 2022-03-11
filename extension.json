@@ -1,0 +1,58 @@
+{
+	"name": "AutomatedValues",
+	"type": "wikibase",
+
+	"version": "0.0.1",
+
+	"author": [
+		"[https://www.EntropyWins.wtf/mediawiki Jeroen De Dauw]",
+		"[https://professional.wiki/ Professional.Wiki]"
+	],
+
+	"url": "https://github.com/ProfessionalWiki/AutomatedValues",
+
+	"descriptionmsg": "automated-values-description",
+
+	"requires": {
+		"MediaWiki": ">= 1.35.0",
+		"extensions": {
+			"WikibaseRepository": "*"
+		}
+	},
+
+	"MessagesDirs": {
+		"AutomatedValues": [
+			"i18n"
+		]
+	},
+
+	"AutoloadNamespaces": {
+		"ProfessionalWiki\\AutomatedValues\\": "src/",
+		"ProfessionalWiki\\AutomatedValues\\Tests\\": "tests/"
+	},
+
+	"Hooks": {
+		"EditFilterMergedContent": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFilterMergedContent"
+	},
+
+	"config": {
+	},
+
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "AutomatedValues/resources"
+	},
+
+	"ResourceModules": {
+		"ext.automated.values": {
+			"dependencies": [
+			],
+			"scripts": [
+			],
+			"styles": [
+			]
+		}
+	},
+
+	"manifest_version": 2
+}
