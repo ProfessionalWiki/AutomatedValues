@@ -1,0 +1,25 @@
+[
+	{
+		"ruleName": "Persons should have a label composed of their first and last name",
+		"when": [
+			{
+				"statement": "P1",
+				"equalTo": "Q1"
+			}
+		],
+		"buildLabel": {
+			"en": {
+				"P2.P3": "$ ",
+				"P2": " $",
+				"P2.P4": " $"
+			}
+		},
+		"buildAliases": {
+			"*": {
+				"P5.P3": "$ ",
+				"P5": " ",
+				"P5.P4": " $"
+			}
+		}
+	}
+]

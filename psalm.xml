@@ -10,6 +10,9 @@
     <projectFiles>
         <directory name="src" />
 		<directory name="tests" />
+		<ignoreFiles>
+			<file name="tests/TestExampleRules.php" />
+		</ignoreFiles>
     </projectFiles>
 
 	<extraFiles>

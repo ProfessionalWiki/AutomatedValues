@@ -24,12 +24,13 @@
 	],
 	"require": {
 		"php": ">=7.4",
-		"composer/installers": "^2|^1.0.1"
+		"composer/installers": "^2|^1.0.1",
+		"opis/json-schema": "^2.3.0"
 	},
 	"require-dev": {
 		"vimeo/psalm": "^4.22.0",
 		"phpstan/phpstan": "^1.4.8",
-		"mediawiki/mediawiki-codesniffer": "38.0.0"
+		"mediawiki/mediawiki-codesniffer": "^38.0.0"
 	},
 	"extra": {
 		"installer-name": "AutomatedValues"
