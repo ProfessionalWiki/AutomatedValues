@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <psalm
     errorLevel="1"
-    resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config ../../vendor/vimeo/psalm/config.xsd"
@@ -11,9 +10,13 @@
         <directory name="src" />
 		<directory name="tests" />
 		<ignoreFiles>
-			<file name="tests/TestExampleRules.php" />
+			<file name="src/Presentation/RulesDeserializer.php" />
 		</ignoreFiles>
     </projectFiles>
+
+	<stubs>
+		<file name="src/Presentation/RulesDeserializer.php" />
+	</stubs>
 
 	<extraFiles>
 		<directory name="../../includes" />

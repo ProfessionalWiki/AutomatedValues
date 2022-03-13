@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\AutomatedValues;
+namespace ProfessionalWiki\AutomatedValues\Domain;
 
 use DataValues\DataValue;
 use Wikibase\DataModel\Entity\PropertyId;
@@ -20,6 +20,8 @@ class StatementEqualityCriterion implements EntityCriterion {
 	}
 
 	public function matches( StatementListProvidingEntity $entity ): bool {
+		// TODO: also support detecting matching EntityIDs
+
 		$expectedSnak = new PropertyValueSnak( $this->propertyId, $this->expectedValue );
 
 		foreach ( $entity->getStatements()->getBestStatements()->toArray() as $statement ) {

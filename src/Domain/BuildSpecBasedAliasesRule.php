@@ -2,12 +2,12 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\AutomatedValues;
+namespace ProfessionalWiki\AutomatedValues\Domain;
 
 use Wikibase\DataModel\Statement\StatementList;
-use Wikibase\DataModel\Term\TermList;
+use Wikibase\DataModel\Term\AliasGroupList;
 
-class BuildSpecBasedLabelRule implements LabelRule {
+class BuildSpecBasedAliasesRule implements AliasesRule {
 
 	/**
 	 * @var string[]
@@ -25,11 +25,11 @@ class BuildSpecBasedLabelRule implements LabelRule {
 		$this->buildSpecification = $buildSpecification;
 	}
 
-	public function applyTo( TermList $labels, StatementList $statements ): void {
-		$label = ( new ValueBuilder() )->buildValue( $this->buildSpecification, $statements );
+	public function applyTo( AliasGroupList $aliasGroups, StatementList $statements ): void {
+		$aliases = ( new ValueBuilder() )->buildValues( $this->buildSpecification, $statements );
 
 		foreach ( $this->languageCodes as $languageCode ) {
-			$labels->setTextForLanguage( $languageCode, $label );
+			$aliasGroups->setAliasesForLanguage( $languageCode, $aliases );
 		}
 	}
 

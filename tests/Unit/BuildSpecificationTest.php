@@ -5,8 +5,8 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\BuildSpecification;
-use ProfessionalWiki\AutomatedValues\Segment;
+use ProfessionalWiki\AutomatedValues\Domain\BuildSpecification;
+use ProfessionalWiki\AutomatedValues\Domain\Segment;
 use Wikibase\DataModel\Entity\PropertyId;
 
 /**
