@@ -14,9 +14,9 @@ use Wikibase\DataModel\Statement\StatementList;
 
 class TemplateSegment {
 
-	public /* readonly */ string $template;
+	private string $template;
 	public /* readonly */ PropertyId $statementPropertyId;
-	public /* readonly */ ?PropertyId $qualifierPropertyId;
+	private ?PropertyId $qualifierPropertyId;
 
 	/**
 	 * @param string $template $ is replaced by the value
