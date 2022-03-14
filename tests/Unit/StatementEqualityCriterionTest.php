@@ -7,7 +7,9 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion;
+use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\Item;
+use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
@@ -75,6 +77,16 @@ class StatementEqualityCriterionTest extends TestCase {
 		$input = $this->newEntityWithStatements( $a, $b );
 
 		$this->assertFalse( $criterion->matches( $input ) );
+	}
+
+	public function testEntityIdValueMatches(): void {
+		$criterion = new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( 'Q42' ) );
+
+		$input = $this->newEntityWithStatements(
+			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new EntityIdValue( new ItemId( 'Q42' ) ) ) ),
+		);
+
+		$this->assertTrue( $criterion->matches( $input ) );
 	}
 
 }

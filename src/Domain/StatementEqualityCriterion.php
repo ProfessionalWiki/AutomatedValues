@@ -5,9 +5,12 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Domain;
 
 use DataValues\DataValue;
+use DataValues\StringValue;
+use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
+use Wikibase\DataModel\Snak\Snak;
 
 class StatementEqualityCriterion implements EntityCriterion {
 
@@ -20,17 +23,29 @@ class StatementEqualityCriterion implements EntityCriterion {
 	}
 
 	public function matches( StatementListProvidingEntity $entity ): bool {
-		// TODO: also support detecting matching EntityIDs
-
-		$expectedSnak = new PropertyValueSnak( $this->propertyId, $this->expectedValue );
-
-		foreach ( $entity->getStatements()->getBestStatements()->toArray() as $statement ) {
-			if ( $statement->getMainSnak()->equals( $expectedSnak ) ) {
+		foreach ( $entity->getStatements()->getByPropertyId( $this->propertyId )->getBestStatements()->toArray() as $statement ) {
+			if ( $this->snakMatches( $statement->getMainSnak() ) ) {
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	private function snakMatches( Snak $snak ): bool {
+		if ( $snak instanceof PropertyValueSnak ) {
+			return $this->dataValueMatches( $snak->getDataValue() );
+		}
+
+		return false;
+	}
+
+	private function dataValueMatches( DataValue $dataValue ): bool {
+		if ( $dataValue instanceof EntityIdValue && $this->expectedValue instanceof StringValue ) {
+			return $dataValue->getEntityId()->getSerialization() === $this->expectedValue->getValue();
+		}
+
+		return $dataValue->equals( $this->expectedValue );
 	}
 
 }
