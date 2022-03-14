@@ -14,7 +14,7 @@ use Wikibase\DataModel\Statement\StatementList;
 
 class ValueBuilder {
 
-	public function buildValue( TemplateSegments $specification, StatementList $statements ): string {
+	public function buildValue( Template $specification, StatementList $statements ): string {
 		$buildValue = '';
 
 		foreach ( $specification->segments as $segment ) {
@@ -27,7 +27,7 @@ class ValueBuilder {
 	/**
 	 * @return string[]
 	 */
-	public function buildValues( TemplateSegments $specification, StatementList $statements ): array {
+	public function buildValues( Template $specification, StatementList $statements ): array {
 		if ( !$specification->supportsMultipleValues() ) {
 			return [ $this->buildValue( $specification, $statements ) ];
 		}
@@ -38,7 +38,7 @@ class ValueBuilder {
 	/**
 	 * @return string[]
 	 */
-	private function buildMultipleValues( TemplateSegments $specification, StatementList $statements ): array {
+	private function buildMultipleValues( Template $specification, StatementList $statements ): array {
 		$values = [];
 
 		foreach ( $statements->toArray() as $statement ) {
@@ -51,7 +51,7 @@ class ValueBuilder {
 	/**
 	 * @return string[]
 	 */
-	private function segmentToStrings( Segment $segment, StatementList $statements ): array {
+	private function segmentToStrings( TemplateSegment $segment, StatementList $statements ): array {
 		$strings = [];
 
 		foreach ( $this->getValuesForSegment( $segment, $statements ) as $dataValue ) {
@@ -70,7 +70,7 @@ class ValueBuilder {
 	/**
 	 * @return DataValue[]
 	 */
-	private function getValuesForSegment( Segment $segment, StatementList $statements ): array {
+	private function getValuesForSegment( TemplateSegment $segment, StatementList $statements ): array {
 		$values = [];
 
 		foreach ( $statements->getByPropertyId( $segment->statementPropertyId )->toArray() as $statement ) {
@@ -80,7 +80,7 @@ class ValueBuilder {
 		return array_filter( $values, fn( $v ) => $v !== null );
 	}
 
-	private function getValueFromSegment( Segment $segment, Statement $statement ): ?DataValue {
+	private function getValueFromSegment( TemplateSegment $segment, Statement $statement ): ?DataValue {
 		if ( $segment->qualifierPropertyId === null ) {
 			return $this->getMainSnakValue( $statement );
 		}

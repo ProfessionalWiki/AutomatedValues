@@ -14,13 +14,13 @@ class TemplatedAliasesSpec implements AliasesSpec {
 	 */
 	private array $languageCodes;
 
-	private TemplateSegments $buildSpecification;
+	private Template $buildSpecification;
 
 	/**
 	 * @param string[] $languageCodes
-	 * @param TemplateSegments $buildSpecification
+	 * @param Template $buildSpecification
 	 */
-	public function __construct( array $languageCodes, TemplateSegments $buildSpecification ) {
+	public function __construct( array $languageCodes, Template $buildSpecification ) {
 		$this->languageCodes = $languageCodes;
 		$this->buildSpecification = $buildSpecification;
 	}

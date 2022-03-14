@@ -8,11 +8,11 @@ use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use ProfessionalWiki\AutomatedValues\Domain\Segment;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion;
 use ProfessionalWiki\AutomatedValues\Presentation\RulesDeserializer;
 use ProfessionalWiki\AutomatedValues\Presentation\RuleValidator;
@@ -52,18 +52,18 @@ class RulesDeserializerTest extends TestCase {
 				),
 				new TemplatedLabelSpec(
 					[ 'en' ],
-					new TemplateSegments(
-						new Segment( '$ ', new PropertyId( 'P2' ), new PropertyId( 'P3' ) ),
-						new Segment( '$', new PropertyId( 'P2' ), null ),
-						new Segment( ', $', new PropertyId( 'P2' ), new PropertyId( 'P4' ) ),
+					new Template(
+						new TemplateSegment( '$ ', new PropertyId( 'P2' ), new PropertyId( 'P3' ) ),
+						new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
+						new TemplateSegment( ', $', new PropertyId( 'P2' ), new PropertyId( 'P4' ) ),
 					)
 				),
 				new TemplatedAliasesSpec(
 					self::DEFAULT_LANGUAGE_CODES,
-					new TemplateSegments(
-						new Segment( 'President ', new PropertyId( 'P5' ), new PropertyId( 'P3' ) ),
-						new Segment( '$', new PropertyId( 'P5' ), null ),
-						new Segment( ' $', new PropertyId( 'P5' ), new PropertyId( 'P4' ) ),
+					new Template(
+						new TemplateSegment( 'President ', new PropertyId( 'P5' ), new PropertyId( 'P3' ) ),
+						new TemplateSegment( '$', new PropertyId( 'P5' ), null ),
+						new TemplateSegment( ' $', new PropertyId( 'P5' ), new PropertyId( 'P4' ) ),
 					)
 				)
 			)

@@ -7,8 +7,8 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 use DataValues\NumberValue;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
-use ProfessionalWiki\AutomatedValues\Domain\Segment;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use ProfessionalWiki\AutomatedValues\Domain\ValueBuilder;
 use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\PropertyId;
@@ -25,12 +25,12 @@ class ValueBuilderTest extends TestCase {
 	public function testEmptySpecificationResultsInEmptyString(): void {
 		$this->assertSame(
 			'',
-			( new ValueBuilder() )->buildValue( new TemplateSegments(), new StatementList() )
+			( new ValueBuilder() )->buildValue( new Template(), new StatementList() )
 		);
 
 		$this->assertSame(
 			'',
-			( new ValueBuilder() )->buildValue( new TemplateSegments(), new StatementList(
+			( new ValueBuilder() )->buildValue( new Template(), new StatementList(
 				new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
 				new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
 			) )
@@ -38,9 +38,9 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testMainSnakValueHappyPath(): void {
-		$spec = new TemplateSegments(
-			new Segment( '$', new PropertyId( 'P2' ), null ),
-			new Segment( ', $', new PropertyId( 'P1' ), null ),
+		$spec = new Template(
+			new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
+			new TemplateSegment( ', $', new PropertyId( 'P1' ), null ),
 		);
 
 		$statements = new StatementList(
@@ -55,11 +55,11 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testPropertiesThatAreNotFoundAreOmitted(): void {
-		$spec = new TemplateSegments(
-			new Segment( '$', new PropertyId( 'P2' ), null ),
-			new Segment( ', $', new PropertyId( 'P1' ), null ),
-			new Segment( '$', new PropertyId( 'P3' ), null ),
-			new Segment( '$', new PropertyId( 'P5' ), null ),
+		$spec = new Template(
+			new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
+			new TemplateSegment( ', $', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '$', new PropertyId( 'P3' ), null ),
+			new TemplateSegment( '$', new PropertyId( 'P5' ), null ),
 		);
 
 		$statements = new StatementList(
@@ -74,11 +74,11 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testNonStringValuesAreOmitted(): void {
-		$spec = new TemplateSegments(
-			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new Segment( 'p2: $ ', new PropertyId( 'P2' ), null ),
-			new Segment( 'p3: $ ', new PropertyId( 'P3' ), null ),
-			new Segment( 'p4: $ ', new PropertyId( 'P4' ), null ),
+		$spec = new Template(
+			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( 'p2: $ ', new PropertyId( 'P2' ), null ),
+			new TemplateSegment( 'p3: $ ', new PropertyId( 'P3' ), null ),
+			new TemplateSegment( 'p4: $ ', new PropertyId( 'P4' ), null ),
 		);
 
 		$statements = new StatementList(
@@ -95,11 +95,11 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testSpecWithQualifiersHappyPath(): void {
-		$spec = new TemplateSegments(
-			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new Segment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
-			new Segment( 'p2: $ ', new PropertyId( 'P2' ), null ),
+		$spec = new Template(
+			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
+			new TemplateSegment( 'p2: $ ', new PropertyId( 'P2' ), null ),
 		);
 
 		$statements = new StatementList(
@@ -121,11 +121,11 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testMissingAndNonStringQualifiersAreOmitted(): void {
-		$spec = new TemplateSegments(
-			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new Segment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
-			new Segment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
-			new Segment( 'p1.p8: $ ', new PropertyId( 'P1' ), new PropertyId( 'P8' ) ),
+		$spec = new Template(
+			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
+			new TemplateSegment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
+			new TemplateSegment( 'p1.p8: $ ', new PropertyId( 'P1' ), new PropertyId( 'P8' ) ),
 		);
 
 		$statements = new StatementList(
@@ -148,10 +148,10 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testBuildsMultipleValues(): void {
-		$spec = new TemplateSegments(
-			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new Segment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
+		$spec = new Template(
+			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
 		);
 
 		$statements = new StatementList(
@@ -179,10 +179,10 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testBuildsSingleValueWhenMultipleStatementPropertiesAreUsed(): void {
-		$spec = new TemplateSegments(
-			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new Segment( 'p2.p7: $ ', new PropertyId( 'P2' ), new PropertyId( 'P7' ) ),
+		$spec = new Template(
+			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( 'p2.p7: $ ', new PropertyId( 'P2' ), new PropertyId( 'P7' ) ),
 		);
 
 		$statements = new StatementList(

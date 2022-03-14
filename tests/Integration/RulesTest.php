@@ -9,12 +9,12 @@ use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
 use ProfessionalWiki\AutomatedValues\Domain\NullAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use ProfessionalWiki\AutomatedValues\Domain\Segment;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\PropertyId;
@@ -59,7 +59,7 @@ class RulesTest extends TestCase {
 				),
 				new TemplatedLabelSpec(
 					[ 'en', 'de' ],
-					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
 				),
 				new NullAliasesSpec()
 			)
@@ -94,7 +94,7 @@ class RulesTest extends TestCase {
 				),
 				new TemplatedLabelSpec(
 					[ 'en', 'de' ],
-					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
 				),
 				new NullAliasesSpec()
 			)
@@ -127,11 +127,11 @@ class RulesTest extends TestCase {
 				),
 				new TemplatedLabelSpec(
 					[ 'en' ],
-					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
 				),
 				new TemplatedAliasesSpec(
 					[ 'de', 'nl' ],
-					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
 				)
 			),
 			new Rule( // Expected to override the label modification from the previous rule
@@ -140,7 +140,7 @@ class RulesTest extends TestCase {
 				),
 				new TemplatedLabelSpec(
 					[ 'en' ],
-					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
 				),
 				new NullAliasesSpec()
 			),
@@ -150,7 +150,7 @@ class RulesTest extends TestCase {
 				),
 				new TemplatedLabelSpec(
 					[ 'fr' ],
-					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
 				),
 				new NullAliasesSpec()
 			)

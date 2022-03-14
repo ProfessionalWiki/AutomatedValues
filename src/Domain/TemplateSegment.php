@@ -6,7 +6,7 @@ namespace ProfessionalWiki\AutomatedValues\Domain;
 
 use Wikibase\DataModel\Entity\PropertyId;
 
-class Segment {
+class TemplateSegment {
 
 	public /* readonly */ string $template;
 	public /* readonly */ PropertyId $statementPropertyId;

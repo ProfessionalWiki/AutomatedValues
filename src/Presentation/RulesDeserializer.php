@@ -8,14 +8,14 @@ use DataValues\StringValue;
 use ProfessionalWiki\AutomatedValues\Domain\AliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
 use ProfessionalWiki\AutomatedValues\Domain\LabelSpec;
 use ProfessionalWiki\AutomatedValues\Domain\NullAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\NullLabelSpec;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use ProfessionalWiki\AutomatedValues\Domain\Segment;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion;
 use Wikibase\DataModel\Entity\PropertyId;
 
@@ -83,20 +83,20 @@ class RulesDeserializer {
 		);
 	}
 
-	private function newTemplateSegments( array $arraySpec ): TemplateSegments {
+	private function newTemplateSegments( array $arraySpec ): Template {
 		$segments = [];
 
 		foreach ( $arraySpec as $property => $template ) {
 			$ids = explode( '.', $property );
 
-			$segments[] = new Segment(
+			$segments[] = new TemplateSegment(
 				$template,
 				new PropertyId( $ids[0] ),
 				array_key_exists( 1, $ids ) ? new PropertyId( $ids[1] ) : null
 			);
 		}
 
-		return new TemplateSegments( ...$segments );
+		return new Template( ...$segments );
 	}
 
 	private function newAliasesRule( array $arrayRule ): AliasesSpec {

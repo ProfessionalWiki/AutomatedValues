@@ -5,8 +5,8 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
-use ProfessionalWiki\AutomatedValues\Domain\Segment;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use Wikibase\DataModel\Entity\PropertyId;
 
 /**
@@ -16,37 +16,37 @@ use Wikibase\DataModel\Entity\PropertyId;
 class BuildSpecificationTest extends TestCase {
 
 	public function testSinglePropertySupportsMultipleValues(): void {
-		$spec = new TemplateSegments(
-			new Segment( '', new PropertyId( 'P1' ), null )
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), null )
 		);
 
 		$this->assertTrue( $spec->supportsMultipleValues() );
 	}
 
 	public function testMultiPropertyDoesNotSupportMultipleValues(): void {
-		$spec = new TemplateSegments(
-			new Segment( '', new PropertyId( 'P1' ), null ),
-			new Segment( '', new PropertyId( 'P2' ), null ),
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '', new PropertyId( 'P2' ), null ),
 		);
 
 		$this->assertFalse( $spec->supportsMultipleValues() );
 	}
 
 	public function testPropertyWithQualifiersSupportsMultipleValues(): void {
-		$spec = new TemplateSegments(
-			new Segment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new Segment( '', new PropertyId( 'P1' ), null ),
-			new Segment( '', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
 		);
 
 		$this->assertTrue( $spec->supportsMultipleValues() );
 	}
 
 	public function testPropertyWithOtherQualifiersDoesNotSupportMultipleValues(): void {
-		$spec = new TemplateSegments(
-			new Segment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new Segment( '', new PropertyId( 'P1' ), null ),
-			new Segment( '', new PropertyId( 'P2' ), new PropertyId( 'P6' ) ),
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '', new PropertyId( 'P2' ), new PropertyId( 'P6' ) ),
 		);
 
 		$this->assertFalse( $spec->supportsMultipleValues() );
