@@ -14,19 +14,19 @@ class TemplatedAliasesSpec implements AliasesSpec {
 	 */
 	private array $languageCodes;
 
-	private Template $buildSpecification;
+	private Template $template;
 
 	/**
 	 * @param string[] $languageCodes
-	 * @param Template $buildSpecification
+	 * @param Template $template
 	 */
-	public function __construct( array $languageCodes, Template $buildSpecification ) {
+	public function __construct( array $languageCodes, Template $template ) {
 		$this->languageCodes = $languageCodes;
-		$this->buildSpecification = $buildSpecification;
+		$this->template = $template;
 	}
 
 	public function applyTo( AliasGroupList $aliasGroups, StatementList $statements ): void {
-		$aliases = ( new ValueBuilder() )->buildValues( $this->buildSpecification, $statements );
+		$aliases = $this->template->buildValues( $statements );
 
 		foreach ( $this->languageCodes as $languageCode ) {
 			$aliasGroups->setAliasesForLanguage( $languageCode, $aliases );

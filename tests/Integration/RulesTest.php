@@ -27,13 +27,13 @@ use Wikibase\DataModel\Term\Term;
 use Wikibase\DataModel\Term\TermList;
 
 /**
- * @covers \ProfessionalWiki\AutomatedValues\Rules
- * @covers \ProfessionalWiki\AutomatedValues\Rule
- * @covers \ProfessionalWiki\AutomatedValues\EntityCriteria
- * @covers \ProfessionalWiki\AutomatedValues\BuildSpecBasedLabelRule
- * @covers \ProfessionalWiki\AutomatedValues\BuildSpecBasedAliasesRule
- * @covers \ProfessionalWiki\AutomatedValues\NullAliasesRule
- * @covers \ProfessionalWiki\AutomatedValues\NullLabelRule
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\Rules
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\Rule
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\EntityCriteria
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\NullAliasesSpec
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\NullLabelSpec
  */
 class RulesTest extends TestCase {
 

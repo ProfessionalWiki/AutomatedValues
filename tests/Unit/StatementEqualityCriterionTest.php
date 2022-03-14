@@ -15,7 +15,7 @@ use Wikibase\DataModel\Statement\Statement;
 use Wikibase\DataModel\Statement\StatementList;
 
 /**
- * @covers \ProfessionalWiki\AutomatedValues\StatementEqualityCriterion
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion
  */
 class StatementEqualityCriterionTest extends TestCase {
 

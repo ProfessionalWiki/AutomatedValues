@@ -14,19 +14,19 @@ class TemplatedLabelSpec implements LabelSpec {
 	 */
 	private array $languageCodes;
 
-	private Template $buildSpecification;
+	private Template $template;
 
 	/**
 	 * @param string[] $languageCodes
-	 * @param Template $buildSpecification
+	 * @param Template $template
 	 */
-	public function __construct( array $languageCodes, Template $buildSpecification ) {
+	public function __construct( array $languageCodes, Template $template ) {
 		$this->languageCodes = $languageCodes;
-		$this->buildSpecification = $buildSpecification;
+		$this->template = $template;
 	}
 
 	public function applyTo( TermList $labels, StatementList $statements ): void {
-		$label = ( new ValueBuilder() )->buildValue( $this->buildSpecification, $statements );
+		$label = $this->template->buildValue( $statements );
 
 		foreach ( $this->languageCodes as $languageCode ) {
 			$labels->setTextForLanguage( $languageCode, $label );

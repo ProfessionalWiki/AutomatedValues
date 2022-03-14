@@ -9,7 +9,6 @@ use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
-use ProfessionalWiki\AutomatedValues\Domain\ValueBuilder;
 use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
@@ -18,19 +17,20 @@ use Wikibase\DataModel\Statement\Statement;
 use Wikibase\DataModel\Statement\StatementList;
 
 /**
- * @covers \ProfessionalWiki\AutomatedValues\ValueBuilder
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\Template
+ * @covers \ProfessionalWiki\AutomatedValues\Domain\TemplateSegment
  */
-class ValueBuilderTest extends TestCase {
+class TemplateTest extends TestCase {
 
 	public function testEmptySpecificationResultsInEmptyString(): void {
 		$this->assertSame(
 			'',
-			( new ValueBuilder() )->buildValue( new Template(), new StatementList() )
+			( new Template() )->buildValue( new StatementList() )
 		);
 
 		$this->assertSame(
 			'',
-			( new ValueBuilder() )->buildValue( new Template(), new StatementList(
+			( new Template() )->buildValue( new StatementList(
 				new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
 				new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
 			) )
@@ -38,7 +38,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testMainSnakValueHappyPath(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
 			new TemplateSegment( ', $', new PropertyId( 'P1' ), null ),
 		);
@@ -50,12 +50,12 @@ class ValueBuilderTest extends TestCase {
 
 		$this->assertSame(
 			'222, 111',
-			( new ValueBuilder() )->buildValue( $spec, $statements )
+			$template->buildValue( $statements )
 		);
 	}
 
 	public function testPropertiesThatAreNotFoundAreOmitted(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
 			new TemplateSegment( ', $', new PropertyId( 'P1' ), null ),
 			new TemplateSegment( '$', new PropertyId( 'P3' ), null ),
@@ -69,12 +69,12 @@ class ValueBuilderTest extends TestCase {
 
 		$this->assertSame(
 			'333',
-			( new ValueBuilder() )->buildValue( $spec, $statements )
+			$template->buildValue( $statements )
 		);
 	}
 
 	public function testNonStringValuesAreOmitted(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new TemplateSegment( 'p2: $ ', new PropertyId( 'P2' ), null ),
 			new TemplateSegment( 'p3: $ ', new PropertyId( 'P3' ), null ),
@@ -90,12 +90,12 @@ class ValueBuilderTest extends TestCase {
 
 		$this->assertSame(
 			'p1: 111 p4: 444 ',
-			( new ValueBuilder() )->buildValue( $spec, $statements )
+			$template->buildValue( $statements )
 		);
 	}
 
 	public function testSpecWithQualifiersHappyPath(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new TemplateSegment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
@@ -116,12 +116,12 @@ class ValueBuilderTest extends TestCase {
 
 		$this->assertSame(
 			'p1.p5: 555 p1: 111 p1.p6: 666 p2: 222 ',
-			( new ValueBuilder() )->buildValue( $spec, $statements )
+			$template->buildValue( $statements )
 		);
 	}
 
 	public function testMissingAndNonStringQualifiersAreOmitted(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new TemplateSegment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
 			new TemplateSegment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
@@ -143,12 +143,12 @@ class ValueBuilderTest extends TestCase {
 
 		$this->assertSame(
 			'p1.p6: 666 p1.p8: 888 ',
-			( new ValueBuilder() )->buildValue( $spec, $statements )
+			$template->buildValue( $statements )
 		);
 	}
 
 	public function testBuildsMultipleValues(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new TemplateSegment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
@@ -174,12 +174,12 @@ class ValueBuilderTest extends TestCase {
 				'p1.p5: 555 p1: First ',
 				'p1: Second p1.p7: 777 '
 			],
-			( new ValueBuilder() )->buildValues( $spec, $statements )
+			$template->buildValues( $statements )
 		);
 	}
 
 	public function testBuildsSingleValueWhenMultipleStatementPropertiesAreUsed(): void {
-		$spec = new Template(
+		$template = new Template(
 			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new TemplateSegment( 'p2.p7: $ ', new PropertyId( 'P2' ), new PropertyId( 'P7' ) ),
@@ -204,8 +204,45 @@ class ValueBuilderTest extends TestCase {
 			[
 				'p1.p5: 555 p1: First p2.p7: 777 ',
 			],
-			( new ValueBuilder() )->buildValues( $spec, $statements )
+			$template->buildValues( $statements )
 		);
+	}
+
+	public function testSinglePropertySupportsMultipleValues(): void {
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), null )
+		);
+
+		$this->assertTrue( $spec->supportsMultipleValues() );
+	}
+
+	public function testMultiPropertyDoesNotSupportMultipleValues(): void {
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '', new PropertyId( 'P2' ), null ),
+		);
+
+		$this->assertFalse( $spec->supportsMultipleValues() );
+	}
+
+	public function testPropertyWithQualifiersSupportsMultipleValues(): void {
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
+		);
+
+		$this->assertTrue( $spec->supportsMultipleValues() );
+	}
+
+	public function testPropertyWithOtherQualifiersDoesNotSupportMultipleValues(): void {
+		$spec = new Template(
+			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
+			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '', new PropertyId( 'P2' ), new PropertyId( 'P6' ) ),
+		);
+
+		$this->assertFalse( $spec->supportsMultipleValues() );
 	}
 
 }
