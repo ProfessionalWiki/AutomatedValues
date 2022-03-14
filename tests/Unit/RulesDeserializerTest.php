@@ -6,9 +6,9 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecBasedAliasesRule;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecBasedLabelRule;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecification;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
@@ -50,17 +50,17 @@ class RulesDeserializerTest extends TestCase {
 						new StringValue( 'Q1' )
 					)
 				),
-				new BuildSpecBasedLabelRule(
+				new TemplatedLabelSpec(
 					[ 'en' ],
-					new BuildSpecification(
+					new TemplateSegments(
 						new Segment( '$ ', new PropertyId( 'P2' ), new PropertyId( 'P3' ) ),
 						new Segment( '$', new PropertyId( 'P2' ), null ),
 						new Segment( ', $', new PropertyId( 'P2' ), new PropertyId( 'P4' ) ),
 					)
 				),
-				new BuildSpecBasedAliasesRule(
+				new TemplatedAliasesSpec(
 					self::DEFAULT_LANGUAGE_CODES,
-					new BuildSpecification(
+					new TemplateSegments(
 						new Segment( 'President ', new PropertyId( 'P5' ), new PropertyId( 'P3' ) ),
 						new Segment( '$', new PropertyId( 'P5' ), null ),
 						new Segment( ' $', new PropertyId( 'P5' ), new PropertyId( 'P4' ) ),

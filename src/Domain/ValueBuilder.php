@@ -14,7 +14,7 @@ use Wikibase\DataModel\Statement\StatementList;
 
 class ValueBuilder {
 
-	public function buildValue( BuildSpecification $specification, StatementList $statements ): string {
+	public function buildValue( TemplateSegments $specification, StatementList $statements ): string {
 		$buildValue = '';
 
 		foreach ( $specification->segments as $segment ) {
@@ -27,7 +27,7 @@ class ValueBuilder {
 	/**
 	 * @return string[]
 	 */
-	public function buildValues( BuildSpecification $specification, StatementList $statements ): array {
+	public function buildValues( TemplateSegments $specification, StatementList $statements ): array {
 		if ( !$specification->supportsMultipleValues() ) {
 			return [ $this->buildValue( $specification, $statements ) ];
 		}
@@ -38,7 +38,7 @@ class ValueBuilder {
 	/**
 	 * @return string[]
 	 */
-	private function buildMultipleValues( BuildSpecification $specification, StatementList $statements ): array {
+	private function buildMultipleValues( TemplateSegments $specification, StatementList $statements ): array {
 		$values = [];
 
 		foreach ( $statements->toArray() as $statement ) {

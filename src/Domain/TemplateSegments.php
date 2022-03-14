@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Domain;
 
-class BuildSpecification {
+class TemplateSegments {
 
 	/**
 	 * @var Segment[]

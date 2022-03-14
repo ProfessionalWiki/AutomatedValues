@@ -5,7 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecification;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
 use ProfessionalWiki\AutomatedValues\Domain\Segment;
 use Wikibase\DataModel\Entity\PropertyId;
 
@@ -16,7 +16,7 @@ use Wikibase\DataModel\Entity\PropertyId;
 class BuildSpecificationTest extends TestCase {
 
 	public function testSinglePropertySupportsMultipleValues(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( '', new PropertyId( 'P1' ), null )
 		);
 
@@ -24,7 +24,7 @@ class BuildSpecificationTest extends TestCase {
 	}
 
 	public function testMultiPropertyDoesNotSupportMultipleValues(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( '', new PropertyId( 'P1' ), null ),
 			new Segment( '', new PropertyId( 'P2' ), null ),
 		);
@@ -33,7 +33,7 @@ class BuildSpecificationTest extends TestCase {
 	}
 
 	public function testPropertyWithQualifiersSupportsMultipleValues(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new Segment( '', new PropertyId( 'P1' ), null ),
 			new Segment( '', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
@@ -43,7 +43,7 @@ class BuildSpecificationTest extends TestCase {
 	}
 
 	public function testPropertyWithOtherQualifiersDoesNotSupportMultipleValues(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new Segment( '', new PropertyId( 'P1' ), null ),
 			new Segment( '', new PropertyId( 'P2' ), new PropertyId( 'P6' ) ),

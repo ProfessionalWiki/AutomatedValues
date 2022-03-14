@@ -7,9 +7,8 @@ namespace ProfessionalWiki\AutomatedValues\Domain;
 use Wikibase\DataModel\Statement\StatementList;
 use Wikibase\DataModel\Term\TermList;
 
-class NullLabelRule implements LabelRule {
+interface LabelSpec {
 
-	public function applyTo( TermList $labels, StatementList $statements ): void {
-	}
+	public function applyTo( TermList $labels, StatementList $statements ): void;
 
 }

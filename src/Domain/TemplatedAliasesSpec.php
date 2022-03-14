@@ -7,20 +7,20 @@ namespace ProfessionalWiki\AutomatedValues\Domain;
 use Wikibase\DataModel\Statement\StatementList;
 use Wikibase\DataModel\Term\AliasGroupList;
 
-class BuildSpecBasedAliasesRule implements AliasesRule {
+class TemplatedAliasesSpec implements AliasesSpec {
 
 	/**
 	 * @var string[]
 	 */
 	private array $languageCodes;
 
-	private BuildSpecification $buildSpecification;
+	private TemplateSegments $buildSpecification;
 
 	/**
 	 * @param string[] $languageCodes
-	 * @param BuildSpecification $buildSpecification
+	 * @param TemplateSegments $buildSpecification
 	 */
-	public function __construct( array $languageCodes, BuildSpecification $buildSpecification ) {
+	public function __construct( array $languageCodes, TemplateSegments $buildSpecification ) {
 		$this->languageCodes = $languageCodes;
 		$this->buildSpecification = $buildSpecification;
 	}

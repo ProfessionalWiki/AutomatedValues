@@ -7,7 +7,7 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 use DataValues\NumberValue;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecification;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
 use ProfessionalWiki\AutomatedValues\Domain\Segment;
 use ProfessionalWiki\AutomatedValues\Domain\ValueBuilder;
 use Wikibase\DataModel\Entity\EntityIdValue;
@@ -25,12 +25,12 @@ class ValueBuilderTest extends TestCase {
 	public function testEmptySpecificationResultsInEmptyString(): void {
 		$this->assertSame(
 			'',
-			( new ValueBuilder() )->buildValue( new BuildSpecification(), new StatementList() )
+			( new ValueBuilder() )->buildValue( new TemplateSegments(), new StatementList() )
 		);
 
 		$this->assertSame(
 			'',
-			( new ValueBuilder() )->buildValue( new BuildSpecification(), new StatementList(
+			( new ValueBuilder() )->buildValue( new TemplateSegments(), new StatementList(
 				new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
 				new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
 			) )
@@ -38,7 +38,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testMainSnakValueHappyPath(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( '$', new PropertyId( 'P2' ), null ),
 			new Segment( ', $', new PropertyId( 'P1' ), null ),
 		);
@@ -55,7 +55,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testPropertiesThatAreNotFoundAreOmitted(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( '$', new PropertyId( 'P2' ), null ),
 			new Segment( ', $', new PropertyId( 'P1' ), null ),
 			new Segment( '$', new PropertyId( 'P3' ), null ),
@@ -74,7 +74,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testNonStringValuesAreOmitted(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new Segment( 'p2: $ ', new PropertyId( 'P2' ), null ),
 			new Segment( 'p3: $ ', new PropertyId( 'P3' ), null ),
@@ -95,7 +95,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testSpecWithQualifiersHappyPath(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new Segment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
@@ -121,7 +121,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testMissingAndNonStringQualifiersAreOmitted(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new Segment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
 			new Segment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
@@ -148,7 +148,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testBuildsMultipleValues(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new Segment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
@@ -179,7 +179,7 @@ class ValueBuilderTest extends TestCase {
 	}
 
 	public function testBuildsSingleValueWhenMultipleStatementPropertiesAreUsed(): void {
-		$spec = new BuildSpecification(
+		$spec = new TemplateSegments(
 			new Segment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
 			new Segment( 'p1: $ ', new PropertyId( 'P1' ), null ),
 			new Segment( 'p2.p7: $ ', new PropertyId( 'P2' ), new PropertyId( 'P7' ) ),

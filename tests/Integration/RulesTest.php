@@ -7,11 +7,11 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Integration;
 use DataValues\NumberValue;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecBasedAliasesRule;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecBasedLabelRule;
-use ProfessionalWiki\AutomatedValues\Domain\BuildSpecification;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegments;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
-use ProfessionalWiki\AutomatedValues\Domain\NullAliasesRule;
+use ProfessionalWiki\AutomatedValues\Domain\NullAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
 use ProfessionalWiki\AutomatedValues\Domain\Segment;
@@ -57,11 +57,11 @@ class RulesTest extends TestCase {
 					new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( 'expected' ) ),
 					new StatementEqualityCriterion( new PropertyId( 'P2' ), new NumberValue( 42 ) ),
 				),
-				new BuildSpecBasedLabelRule(
+				new TemplatedLabelSpec(
 					[ 'en', 'de' ],
-					new BuildSpecification( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
 				),
-				new NullAliasesRule()
+				new NullAliasesSpec()
 			)
 		);
 
@@ -92,11 +92,11 @@ class RulesTest extends TestCase {
 					new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( 'expected' ) ),
 					new StatementEqualityCriterion( new PropertyId( 'P2' ), new NumberValue( 404 ) ),
 				),
-				new BuildSpecBasedLabelRule(
+				new TemplatedLabelSpec(
 					[ 'en', 'de' ],
-					new BuildSpecification( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
 				),
-				new NullAliasesRule()
+				new NullAliasesSpec()
 			)
 		);
 
@@ -125,34 +125,34 @@ class RulesTest extends TestCase {
 				new EntityCriteria(
 					new StatementEqualityCriterion( new PropertyId( 'P3' ), new StringValue( 'matches' ) ),
 				),
-				new BuildSpecBasedLabelRule(
+				new TemplatedLabelSpec(
 					[ 'en' ],
-					new BuildSpecification( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
 				),
-				new BuildSpecBasedAliasesRule(
+				new TemplatedAliasesSpec(
 					[ 'de', 'nl' ],
-					new BuildSpecification( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
 				)
 			),
 			new Rule( // Expected to override the label modification from the previous rule
 				new EntityCriteria(
 					new StatementEqualityCriterion( new PropertyId( 'P2' ), new NumberValue( 42 ) ),
 				),
-				new BuildSpecBasedLabelRule(
+				new TemplatedLabelSpec(
 					[ 'en' ],
-					new BuildSpecification( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
 				),
-				new NullAliasesRule()
+				new NullAliasesSpec()
 			),
 			new Rule( // Expected to not override since the criterion does not match
 				new EntityCriteria(
 					new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( '404' ) ),
 				),
-				new BuildSpecBasedLabelRule(
+				new TemplatedLabelSpec(
 					[ 'fr' ],
-					new BuildSpecification( new Segment( '$', new PropertyId( 'P1' ), null ) )
+					new TemplateSegments( new Segment( '$', new PropertyId( 'P1' ), null ) )
 				),
-				new NullAliasesRule()
+				new NullAliasesSpec()
 			)
 		);
 
