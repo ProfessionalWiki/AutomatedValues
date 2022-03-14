@@ -5,18 +5,16 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Presentation;
 
 use DataValues\StringValue;
-use ProfessionalWiki\AutomatedValues\Domain\AliasesSpec;
-use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
-use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
-use ProfessionalWiki\AutomatedValues\Domain\Template;
+use ProfessionalWiki\AutomatedValues\Domain\AliasesSpecList;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
-use ProfessionalWiki\AutomatedValues\Domain\LabelSpec;
-use ProfessionalWiki\AutomatedValues\Domain\NullAliasesSpec;
-use ProfessionalWiki\AutomatedValues\Domain\NullLabelSpec;
+use ProfessionalWiki\AutomatedValues\Domain\LabelSpecList;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use Wikibase\DataModel\Entity\PropertyId;
 
 class RulesDeserializer {
@@ -52,8 +50,8 @@ class RulesDeserializer {
 		foreach ( $arrayRules as $arrayRule ) {
 			$rules[] = new Rule(
 				$this->newEntityCriteria( $arrayRule ),
-				$this->newLabelRule( $arrayRule ),
-				$this->newAliasesRule( $arrayRule )
+				$this->newLabelSpecList( $arrayRule ),
+				$this->newAliasesSpecList( $arrayRule )
 			);
 		}
 
@@ -69,21 +67,20 @@ class RulesDeserializer {
 		);
 	}
 
-	private function newLabelRule( array $arrayRule ): LabelSpec {
-		if ( !array_key_exists( 'buildLabel', $arrayRule ) ) {
-			return new NullLabelSpec();
+	private function newLabelSpecList( array $arrayRule ): LabelSpecList {
+		$specs = [];
+
+		foreach ( $arrayRule['buildLabel'] ?? [] as $language => $arrayTemplate ) {
+			$specs[] = new TemplatedLabelSpec(
+				$language === '*' ? $this->defaultLanguageCodes : [ $language ],
+				$this->newTemplate( $arrayTemplate )
+			);
 		}
 
-		$labelSpec = $arrayRule['buildLabel'];
-		$language = array_keys( $labelSpec )[0];
-
-		return new TemplatedLabelSpec(
-			$language === '*' ? $this->defaultLanguageCodes : [ $language ], // TODO
-			$this->newTemplateSegments( $labelSpec[$language] )
-		);
+		return new LabelSpecList( ...$specs );
 	}
 
-	private function newTemplateSegments( array $arraySpec ): Template {
+	private function newTemplate( array $arraySpec ): Template {
 		$segments = [];
 
 		foreach ( $arraySpec as $property => $template ) {
@@ -99,18 +96,17 @@ class RulesDeserializer {
 		return new Template( ...$segments );
 	}
 
-	private function newAliasesRule( array $arrayRule ): AliasesSpec {
-		if ( !array_key_exists( 'buildAliases', $arrayRule ) ) {
-			return new NullAliasesSpec();
+	private function newAliasesSpecList( array $arrayRule ): AliasesSpecList {
+		$specs = [];
+
+		foreach ( $arrayRule['buildAliases'] ?? [] as $language => $arrayTemplate ) {
+			$specs[] = new TemplatedAliasesSpec(
+				$language === '*' ? $this->defaultLanguageCodes : [ $language ],
+				$this->newTemplate( $arrayTemplate )
+			);
 		}
 
-		$labelSpec = $arrayRule['buildAliases'];
-		$language = array_keys( $labelSpec )[0];
-
-		return new TemplatedAliasesSpec(
-			$language === '*' ? $this->defaultLanguageCodes : [ $language ], // TODO
-			$this->newTemplateSegments( $labelSpec[$language] )
-		);
+		return new AliasesSpecList( ...$specs );
 	}
 
 }

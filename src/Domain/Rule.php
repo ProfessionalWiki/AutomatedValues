@@ -11,17 +11,17 @@ use Wikibase\DataModel\Term\LabelsProvider;
 class Rule {
 
 	private EntityCriteria $entityCriteria;
-	private LabelSpec $labelSpec;
-	private AliasesSpec $aliasesSpec;
+	private LabelSpecList $labelSpecList;
+	private AliasesSpecList $aliasesSpecList;
 
 	public function __construct(
 		EntityCriteria $entityCriteria,
-		LabelSpec $labelSpec,
-		AliasesSpec $aliasesSpec
+		LabelSpecList $labelSpecList,
+		AliasesSpecList $aliasesSpecList
 	) {
 		$this->entityCriteria = $entityCriteria;
-		$this->labelSpec = $labelSpec;
-		$this->aliasesSpec = $aliasesSpec;
+		$this->labelSpecList = $labelSpecList;
+		$this->aliasesSpecList = $aliasesSpecList;
 	}
 
 	public function applyTo( StatementListProvidingEntity $entity ): void {
@@ -30,11 +30,11 @@ class Rule {
 		}
 
 		if ( $entity instanceof LabelsProvider ) {
-			$this->labelSpec->applyTo( $entity->getLabels(), $entity->getStatements() );
+			$this->labelSpecList->applyTo( $entity->getLabels(), $entity->getStatements() );
 		}
 
 		if ( $entity instanceof AliasesProvider ) {
-			$this->aliasesSpec->applyTo( $entity->getAliasGroups(), $entity->getStatements() );
+			$this->aliasesSpecList->applyTo( $entity->getAliasGroups(), $entity->getStatements() );
 		}
 	}
 

@@ -6,6 +6,8 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
+use ProfessionalWiki\AutomatedValues\Domain\AliasesSpecList;
+use ProfessionalWiki\AutomatedValues\Domain\LabelSpecList;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
 use ProfessionalWiki\AutomatedValues\Domain\Template;
@@ -50,20 +52,24 @@ class RulesDeserializerTest extends TestCase {
 						new StringValue( 'Q1' )
 					)
 				),
-				new TemplatedLabelSpec(
-					[ 'en' ],
-					new Template(
-						new TemplateSegment( '$ ', new PropertyId( 'P2' ), new PropertyId( 'P3' ) ),
-						new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
-						new TemplateSegment( ', $', new PropertyId( 'P2' ), new PropertyId( 'P4' ) ),
+				new LabelSpecList(
+					new TemplatedLabelSpec(
+						[ 'en' ],
+						new Template(
+							new TemplateSegment( '$ ', new PropertyId( 'P2' ), new PropertyId( 'P3' ) ),
+							new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
+							new TemplateSegment( ', $', new PropertyId( 'P2' ), new PropertyId( 'P4' ) ),
+						)
 					)
 				),
-				new TemplatedAliasesSpec(
-					self::DEFAULT_LANGUAGE_CODES,
-					new Template(
-						new TemplateSegment( 'President ', new PropertyId( 'P5' ), new PropertyId( 'P3' ) ),
-						new TemplateSegment( '$', new PropertyId( 'P5' ), null ),
-						new TemplateSegment( ' $', new PropertyId( 'P5' ), new PropertyId( 'P4' ) ),
+				new AliasesSpecList(
+					new TemplatedAliasesSpec(
+						self::DEFAULT_LANGUAGE_CODES,
+						new Template(
+							new TemplateSegment( 'President ', new PropertyId( 'P5' ), new PropertyId( 'P3' ) ),
+							new TemplateSegment( '$', new PropertyId( 'P5' ), null ),
+							new TemplateSegment( ' $', new PropertyId( 'P5' ), new PropertyId( 'P4' ) ),
+						)
 					)
 				)
 			)
