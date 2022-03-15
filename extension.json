@@ -32,7 +32,8 @@
 	},
 
 	"Hooks": {
-		"EditFilterMergedContent": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFilterMergedContent"
+		"EditFilterMergedContent": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFilterMergedContent",
+		"ContentHandlerDefaultModelFor": "ProfessionalWiki\\AutomatedValues\\Hooks::onContentHandlerDefaultModelFor"
 	},
 
 	"config": {

@@ -7,6 +7,7 @@ namespace ProfessionalWiki\AutomatedValues;
 use Content;
 use IContextSource;
 use Status;
+use Title;
 use User;
 use Wikibase\DataModel\Statement\StatementListProvider;
 use Wikibase\DataModel\Term\FingerprintProvider;
@@ -21,6 +22,12 @@ class Hooks {
 			if ( $entity instanceof FingerprintProvider && $entity instanceof StatementListProvider ) {
 				$entity->getFingerprint()->setLabel( 'en', (string)count( $entity->getStatements() ) );
 			}
+		}
+	}
+
+	public static function onContentHandlerDefaultModelFor( Title $title, ?string &$model ) {
+		if ( $title->getNamespace() === NS_MEDIAWIKI && $title->getText() === 'AutomatedValues' ) {
+			$model = CONTENT_MODEL_JSON;
 		}
 	}
 
