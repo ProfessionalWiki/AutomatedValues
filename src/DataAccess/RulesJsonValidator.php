@@ -6,7 +6,7 @@ namespace ProfessionalWiki\AutomatedValues\DataAccess;
 
 use Opis\JsonSchema\Validator;
 
-class RuleValidator {
+class RulesJsonValidator {
 
 	public static function newInstance(): self {
 		$json = file_get_contents( __DIR__ . '/../rule.schema.json' );

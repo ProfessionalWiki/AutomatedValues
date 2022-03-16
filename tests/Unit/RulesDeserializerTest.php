@@ -7,7 +7,7 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
-use ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator;
+use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
 use ProfessionalWiki\AutomatedValues\Domain\AliasesSpecList;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
 use ProfessionalWiki\AutomatedValues\Domain\LabelSpecList;
@@ -36,7 +36,7 @@ class RulesDeserializerTest extends TestCase {
 
 	private function newRulesDeserializer(): RulesDeserializer {
 		return new RulesDeserializer(
-			RuleValidator::newInstance(),
+			RulesJsonValidator::newInstance(),
 			self::DEFAULT_LANGUAGE_CODES
 		);
 	}

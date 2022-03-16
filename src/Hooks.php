@@ -10,7 +10,7 @@ use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\AutomatedValues\DataAccess\PageContentFetcher;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesLookup;
-use ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator;
+use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
 use Status;
 use Title;
@@ -43,7 +43,7 @@ class Hooks {
 				MediaWikiServices::getInstance()->getRevisionLookup()
 			),
 			new RulesDeserializer(
-				RuleValidator::newInstance(),
+				RulesJsonValidator::newInstance(),
 				[] // TODO
 			)
 		);

@@ -6,7 +6,7 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
-use ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator;
+use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
 use ProfessionalWiki\AutomatedValues\Tests\TestRules;
 
@@ -19,7 +19,7 @@ class RulesDeserializerIntegrationTest extends TestCase {
 
 	private function newRulesDeserializer(): RulesDeserializer {
 		return new RulesDeserializer(
-			RuleValidator::newInstance(),
+			RulesJsonValidator::newInstance(),
 			self::DEFAULT_LANGUAGE_CODES
 		);
 	}

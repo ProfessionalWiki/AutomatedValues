@@ -19,13 +19,13 @@ use Wikibase\DataModel\Entity\PropertyId;
 
 class RulesDeserializer {
 
-	private RuleValidator $validator;
+	private RulesJsonValidator $validator;
 	private array $defaultLanguageCodes;
 
 	/**
 	 * @param string[] $defaultLanguageCodes
 	 */
-	public function __construct( RuleValidator $validator, array $defaultLanguageCodes ) {
+	public function __construct( RulesJsonValidator $validator, array $defaultLanguageCodes ) {
 		$this->validator = $validator;
 		$this->defaultLanguageCodes = $defaultLanguageCodes;
 	}
