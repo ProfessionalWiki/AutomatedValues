@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\AutomatedValues\Presentation;
+namespace ProfessionalWiki\AutomatedValues\DataAccess;
 
 use DataValues\StringValue;
 use ProfessionalWiki\AutomatedValues\Domain\AliasesSpecList;
@@ -39,7 +39,7 @@ class RulesDeserializer {
 			}
 		}
 
-		// TODO: log warning
+		// TODO: log warning or throw and log higher up
 
 		return new Rules();
 	}

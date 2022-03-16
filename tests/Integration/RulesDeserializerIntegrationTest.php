@@ -5,13 +5,13 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
+use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
+use ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use ProfessionalWiki\AutomatedValues\Presentation\RulesDeserializer;
-use ProfessionalWiki\AutomatedValues\Presentation\RuleValidator;
 use ProfessionalWiki\AutomatedValues\Tests\TestRules;
 
 /**
- * @covers \ProfessionalWiki\AutomatedValues\Presentation\RulesDeserializer
+ * @covers \ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer
  */
 class RulesDeserializerIntegrationTest extends TestCase {
 

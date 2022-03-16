@@ -91,6 +91,10 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * PHPStan: `vendor/bin/phpstan analyse --configuration=extensions/AutomatedValues/phpstan.neon --memory-limit=2G`
 * Psalm: `php vendor/bin/psalm --config=extensions/AutomatedValues/psalm.xml`
 
+### High level design
+
+
+
 ## Release notes
 
 

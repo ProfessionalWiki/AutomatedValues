@@ -5,11 +5,11 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\AutomatedValues\Presentation\RuleValidator;
+use ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator;
 use ProfessionalWiki\AutomatedValues\Tests\TestRules;
 
 /**
- * @covers \ProfessionalWiki\AutomatedValues\Presentation\RuleValidator
+ * @covers \ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator
  */
 class RuleValidatorTest extends TestCase {
 

@@ -10,12 +10,12 @@
         <directory name="src" />
 		<directory name="tests" />
 		<ignoreFiles>
-			<file name="src/Presentation/RulesDeserializer.php" />
+			<file name="src/DataAccess/RulesDeserializer.php" />
 		</ignoreFiles>
     </projectFiles>
 
 	<stubs>
-		<file name="src/Presentation/RulesDeserializer.php" />
+		<file name="src/DataAccess/RulesDeserializer.php" />
 	</stubs>
 
 	<extraFiles>

@@ -6,22 +6,22 @@ namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
+use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
+use ProfessionalWiki\AutomatedValues\DataAccess\RuleValidator;
 use ProfessionalWiki\AutomatedValues\Domain\AliasesSpecList;
-use ProfessionalWiki\AutomatedValues\Domain\LabelSpecList;
-use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
-use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
-use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
+use ProfessionalWiki\AutomatedValues\Domain\LabelSpecList;
 use ProfessionalWiki\AutomatedValues\Domain\Rule;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use ProfessionalWiki\AutomatedValues\Domain\StatementEqualityCriterion;
-use ProfessionalWiki\AutomatedValues\Presentation\RulesDeserializer;
-use ProfessionalWiki\AutomatedValues\Presentation\RuleValidator;
+use ProfessionalWiki\AutomatedValues\Domain\Template;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
+use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
 use Wikibase\DataModel\Entity\PropertyId;
 
 /**
- * @covers \ProfessionalWiki\AutomatedValues\Presentation\RulesDeserializer
+ * @covers \ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer
  */
 class RulesDeserializerTest extends TestCase {
 

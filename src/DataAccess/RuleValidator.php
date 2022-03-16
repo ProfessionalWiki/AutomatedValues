@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\AutomatedValues\Presentation;
+namespace ProfessionalWiki\AutomatedValues\DataAccess;
 
 use Opis\JsonSchema\Validator;
 
