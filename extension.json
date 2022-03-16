@@ -33,7 +33,8 @@
 
 	"Hooks": {
 		"EditFilterMergedContent": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFilterMergedContent",
-		"ContentHandlerDefaultModelFor": "ProfessionalWiki\\AutomatedValues\\Hooks::onContentHandlerDefaultModelFor"
+		"ContentHandlerDefaultModelFor": "ProfessionalWiki\\AutomatedValues\\Hooks::onContentHandlerDefaultModelFor",
+		"EditFilter": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFilter"
 	},
 
 	"config": {

@@ -96,6 +96,9 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 The `Domain/` folder contains the domain model, which is both independent of MediaWiki code and wiki concepts beyond the
 Wikibase DataModel. In other words, the `Domain/` folder is the core of the application, with no outgoing dependencies.
 
+`Hooks.php` acts as entry point and does object graph construction. Upon expansion of the extension, the later would go
+into a dedicated top level factory.
+
 ## Release notes
 
 

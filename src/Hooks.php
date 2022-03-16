@@ -5,24 +5,22 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues;
 
 use Content;
+use EditPage;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\AutomatedValues\DataAccess\PageContentFetcher;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
-use ProfessionalWiki\AutomatedValues\DataAccess\RulesLookup;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
-use ProfessionalWiki\AutomatedValues\Domain\Rules;
-use Status;
+use ProfessionalWiki\AutomatedValues\DataAccess\RulesLookup;
 use Title;
-use User;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
-use Wikibase\DataModel\Statement\StatementListProvider;
-use Wikibase\DataModel\Term\FingerprintProvider;
 use Wikibase\Repo\Content\EntityContent;
 
 class Hooks {
 
-	public static function onEditFilterMergedContent( IContextSource $context, Content $content, Status $status, string $summary, User $user, bool $minorEdit ): void {
+	private const CONFIG_PAGE_TITLE = 'AutomatedValues';
+
+	public static function onEditFilterMergedContent( IContextSource $context, Content $content ): void {
 		if ( $content instanceof EntityContent ) {
 			try {
 				$entity = $content->getEntity();
@@ -45,13 +43,25 @@ class Hooks {
 			new RulesDeserializer(
 				RulesJsonValidator::newInstance(),
 				[] // TODO
-			)
+			),
+			self::CONFIG_PAGE_TITLE
 		);
 	}
 
 	public static function onContentHandlerDefaultModelFor( Title $title, ?string &$model ): void {
-		if ( $title->getNamespace() === NS_MEDIAWIKI && $title->getText() === 'AutomatedValues' ) {
+		if ( self::isConfigTitle( $title ) ) {
 			$model = 'json'; // CONTENT_MODEL_JSON (string to make Psalm happy)
+		}
+	}
+
+	private static function isConfigTitle( Title $title ): bool {
+		return $title->getNamespace() === NS_MEDIAWIKI
+			&& $title->getText() === self::CONFIG_PAGE_TITLE;
+	}
+
+	public static function onEditFilter( EditPage $editPage, string $text, string $section, string &$error ): void {
+		if ( self::isConfigTitle( $editPage->getTitle() ) && !RulesJsonValidator::newInstance()->validate( $text ) ) {
+			$error = \Html::errorBox( wfMessage( 'automated-values-config-invalid' )->escaped() );
 		}
 	}
 

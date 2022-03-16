@@ -5,5 +5,6 @@
 		]
 	},
 	"automated-values-name": "Automated Values",
-	"automated-values-description": "Automatic creation of Wikibase labels and aliases based on statement values"
+	"automated-values-description": "Automatic creation of Wikibase labels and aliases based on statement values",
+	"automated-values-config-invalid": "Invalid configuration. Your changes where not saved."
 }

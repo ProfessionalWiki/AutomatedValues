@@ -11,6 +11,7 @@
 		<directory name="tests" />
 		<ignoreFiles>
 			<file name="src/DataAccess/RulesDeserializer.php" />
+			<file name="src/Hooks.php" />
 		</ignoreFiles>
     </projectFiles>
 
