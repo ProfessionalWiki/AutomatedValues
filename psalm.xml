@@ -31,5 +31,6 @@
 				<directory name="tests" />
 			</errorLevel>
 		</PropertyNotSetInConstructor>
+		<UndefinedConstant errorLevel="suppress" />
 	</issueHandlers>
 </psalm>

@@ -25,9 +25,9 @@ class Hooks {
 		}
 	}
 
-	public static function onContentHandlerDefaultModelFor( Title $title, ?string &$model ) {
+	public static function onContentHandlerDefaultModelFor( Title $title, ?string &$model ): void {
 		if ( $title->getNamespace() === NS_MEDIAWIKI && $title->getText() === 'AutomatedValues' ) {
-			$model = CONTENT_MODEL_JSON;
+			$model = 'json'; // CONTENT_MODEL_JSON (string to make Psalm happy)
 		}
 	}
 
