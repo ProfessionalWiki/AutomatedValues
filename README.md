@@ -93,7 +93,8 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ### High level design
 
-
+The `Domain/` folder contains the domain model, which is both independent of MediaWiki code and wiki concepts beyond the
+Wikibase DataModel. In other words, the `Domain/` folder is the core of the application, with no outgoing dependencies.
 
 ## Release notes
 
