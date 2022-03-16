@@ -4,10 +4,10 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues;
 
-use Content;
 use EditPage;
-use IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RenderedRevision;
+use MediaWiki\Revision\RevisionAccessException;
 use ProfessionalWiki\AutomatedValues\DataAccess\PageContentFetcher;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
@@ -20,8 +20,14 @@ class Hooks {
 
 	private const CONFIG_PAGE_TITLE = 'AutomatedValues';
 
-	public static function onEditFilterMergedContent( IContextSource $context, Content $content ): void {
-		if ( $content instanceof EntityContent ) {
+	public static function onMultiContentSave( RenderedRevision $renderedRevision ): void {
+		try {
+			$content = $renderedRevision->getRevision()->getSlot( 'main' )->getContent();
+		}
+		catch ( RevisionAccessException $ex ) {
+		}
+
+		if ( isset( $content ) && $content instanceof EntityContent ) {
 			try {
 				$entity = $content->getEntity();
 			}

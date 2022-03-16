@@ -33,5 +33,10 @@
 			</errorLevel>
 		</PropertyNotSetInConstructor>
 		<UndefinedConstant errorLevel="suppress" />
+		<UndefinedClass>
+			<errorLevel type="suppress">
+				<directory name="tests" />
+			</errorLevel>
+		</UndefinedClass>
 	</issueHandlers>
 </psalm>

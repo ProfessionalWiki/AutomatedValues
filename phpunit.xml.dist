@@ -9,6 +9,9 @@
 		<testsuite name="TestExampleRules">
 			<file>tests/TestExampleRules.php</file>
 		</testsuite>
+		<testsuite name="MediaWiki">
+			<directory>tests/MediaWiki</directory>
+		</testsuite>
 	</testsuites>
 	<filter>
 		<whitelist addUncoveredFilesFromWhitelist="true">
