@@ -26,7 +26,7 @@ Automated Values has been created and is maintained by [Professional.Wiki].
 
 Platform requirements:
 
-* [PHP] 7.4 or later (tested up to 8.1)
+* [PHP] 7.4 or later (tested up to 8.0)
 * [MediaWiki] 1.35 or later (tested up to 1.37)
 * [Wikibase] 1.35 or later (tested up to 1.37)
 
