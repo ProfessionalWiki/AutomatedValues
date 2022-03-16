@@ -42,10 +42,22 @@ class Hooks {
 			),
 			new RulesDeserializer(
 				RulesJsonValidator::newInstance(),
-				[] // TODO
+				self::getDefaultLanguages()
 			),
 			self::CONFIG_PAGE_TITLE
 		);
+	}
+
+	/**
+	 * @return string[]
+	 */
+	private static function getDefaultLanguages(): array {
+		/**
+		 * @var string[]
+		 */
+		$languages = MediaWikiServices::getInstance()->getMainConfig()->get( 'AutomatedValuesDefaultLanguages' );
+
+		return $languages;
 	}
 
 	public static function onContentHandlerDefaultModelFor( Title $title, ?string &$model ): void {

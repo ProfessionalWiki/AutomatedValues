@@ -38,6 +38,10 @@
 	},
 
 	"config": {
+		"AutomatedValuesDefaultLanguages": {
+			"description": "List of languages to create values for via '*' build specifications",
+			"value": []
+		}
 	},
 
 	"ResourceFileModulePaths": {
