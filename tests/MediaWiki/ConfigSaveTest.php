@@ -13,6 +13,9 @@ use Wikibase\DataModel\Term\TermList;
 
 /**
  * @covers \ProfessionalWiki\AutomatedValues\Hooks
+ * @covers \ProfessionalWiki\AutomatedValues\AutomatedValuesFactory
+ * @covers \ProfessionalWiki\AutomatedValues\DataAccess\WikiRulesLookup
+ * @covers \ProfessionalWiki\AutomatedValues\DataAccess\PageContentFetcher
  * @group Database
  */
 class ConfigSaveTest extends AutomatedValuesMwTestCase {

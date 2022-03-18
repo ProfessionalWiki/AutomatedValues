@@ -13,6 +13,7 @@ use Wikibase\DataModel\Term\TermList;
 
 /**
  * @covers \ProfessionalWiki\AutomatedValues\Hooks
+ * @covers \ProfessionalWiki\AutomatedValues\AutomatedValuesFactory
  * @covers \ProfessionalWiki\AutomatedValues\Domain\Rules
  * @covers \ProfessionalWiki\AutomatedValues\DataAccess\CombiningRulesLookup
  * @group Database
