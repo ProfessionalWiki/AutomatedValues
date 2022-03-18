@@ -14,7 +14,7 @@ Automated Values has been created and is maintained by [Professional.Wiki].
 
 - [Usage](#usage)
 - [Installation](#installation)
-- [Configuration](#configuration)
+- [PHP Configuration](#php-configuration)
 - [Development](#development)
 - [Release notes](#release-notes)
 
@@ -50,11 +50,60 @@ wfLoadExtension( 'AutomatedValues' );
 
 You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
 
-## Configuration
+## PHP Configuration
 
 Configuration can be changed via [LocalSettings.php].
 
+### Default languages
 
+List of languages to create values for via '*' build specifications.
+
+Variable: `$wgAutomatedValuesDefaultLanguages`
+
+Default: `[]`
+
+Example: `[ 'en', 'de', 'nl' ]`
+
+If the value of this configuration is an empty list, '*' build specifications will be ignored.
+
+### Rules
+
+List of rules applied to the wiki. In JSON format, following the JSON Schema at rules.schema.json.
+Gets combined with rules defined on MediaWiki:AutomatedValues.
+
+Variable: `$wgAutomatedValuesRules`
+
+Default: `""`
+
+Example: 
+
+```php
+$wgAutomatedValuesRules = '
+[
+	{
+		"buildLabel": {
+			"en": {
+				"P2": "$"
+			}
+		}
+	}
+]
+';
+```
+
+**Caution**: invalid JSON will be _ignored_. No error will be shown, the intended rules will just not be applied.
+
+### Enable in-wiki rules
+
+If it should be possible to define rules via MediaWiki:AutomatedValues.
+
+Variable: `$wgAutomatedValuesEnableDefiningRulesInWiki`
+
+Default: `true`
+
+Example: `false`
+
+The page MediaWiki:AutomatedValues will always be available. If this configuration is set to `false`, its contents will be ignored.
 
 ## Development
 
