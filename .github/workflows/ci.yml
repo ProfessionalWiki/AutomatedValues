@@ -106,7 +106,7 @@ jobs:
             mediawiki
             mediawiki/extensions/
             mediawiki/vendor/
-          key: mw_static_analysis_v4
+          key: mw_phpstan
 
       - name: Cache Composer cache
         uses: actions/cache@v2
@@ -163,7 +163,7 @@ jobs:
                     mediawiki
                     mediawiki/extensions/
                     mediawiki/vendor/
-                key: mw_static_analysis_v4
+                key: mw_psalm
 
           - name: Cache Composer cache
             uses: actions/cache@v2
