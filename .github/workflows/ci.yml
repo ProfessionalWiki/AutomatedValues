@@ -101,9 +101,9 @@ jobs:
         with:
           path: |
             mediawiki
-            !mediawiki/extensions/
-            !mediawiki/vendor/
-          key: mw_static_analysis_v3
+            mediawiki/extensions/
+            mediawiki/vendor/
+          key: mw_static_analysis_v4
 
       - name: Cache Composer cache
         uses: actions/cache@v2
@@ -118,7 +118,7 @@ jobs:
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_37 AutomatedValues
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_35 AutomatedValues
 
       - uses: actions/checkout@v2
         with:
