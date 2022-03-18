@@ -12,6 +12,8 @@
 		<ignoreFiles>
 			<file name="src/DataAccess/RulesDeserializer.php" />
 			<file name="src/Hooks.php" />
+			<file name="src/AutomatedValuesFactory.php" />
+			<directory name="tests/MediaWiki" />
 		</ignoreFiles>
     </projectFiles>
 

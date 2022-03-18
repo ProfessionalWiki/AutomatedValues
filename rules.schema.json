@@ -1,6 +1,6 @@
 {
 	"$id": "https://example.com/address.schema.json",
-	"$schema": "https://raw.githubusercontent.com/ProfessionalWiki/AutomatedValues/master/src/rule.schema.json",
+	"$schema": "https://raw.githubusercontent.com/ProfessionalWiki/AutomatedValues/master/rules.schema.json",
 	"title": "Rule",
 	"description": "A Wikibase Automated Values rule",
 

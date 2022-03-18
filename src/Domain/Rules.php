@@ -23,4 +23,8 @@ class Rules {
 		}
 	}
 
+	public function plus( self $rules ): self {
+		return new self( ...array_merge( $this->rules, $rules->rules ) );
+	}
+
 }
