@@ -9,6 +9,7 @@ use MediaWikiIntegrationTestCase;
 use Serializers\Serializer;
 use Wikibase\DataModel\Entity\Property;
 use Wikibase\DataModel\Entity\PropertyId;
+use Wikibase\DataModel\Services\Lookup\LegacyAdapterPropertyLookup;
 use Wikibase\DataModel\Services\Lookup\PropertyLookup;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Term\Term;
@@ -63,7 +64,7 @@ class ConfigSaveTest extends MediaWikiIntegrationTestCase {
 			return WikibaseRepo::getDefaultInstance()->getPropertyLookup();
 		}
 
-		return WikibaseRepo::getPropertyLookup();
+		return new LegacyAdapterPropertyLookup( WikibaseRepo::getEntityLookup() );
 	}
 
 	private function saveProperty( Property $property ) {
