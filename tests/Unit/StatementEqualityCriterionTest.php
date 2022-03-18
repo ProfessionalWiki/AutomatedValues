@@ -12,6 +12,8 @@ use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
+use Wikibase\DataModel\Snak\PropertyNoValueSnak;
+use Wikibase\DataModel\Snak\PropertySomeValueSnak;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Statement\Statement;
 use Wikibase\DataModel\Statement\StatementList;
@@ -87,6 +89,17 @@ class StatementEqualityCriterionTest extends TestCase {
 		);
 
 		$this->assertTrue( $criterion->matches( $input ) );
+	}
+
+	public function testNonValueSnakDoesNotMatch(): void {
+		$criterion = new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( 'Q42' ) );
+
+		$input = $this->newEntityWithStatements(
+			new Statement( new PropertySomeValueSnak( new PropertyId( 'P1' ) ) ),
+			new Statement( new PropertyNoValueSnak( new PropertyId( 'P1' ) ) ),
+		);
+
+		$this->assertFalse( $criterion->matches( $input ) );
 	}
 
 }
