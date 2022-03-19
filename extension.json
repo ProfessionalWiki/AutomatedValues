@@ -44,7 +44,7 @@
 			"value": []
 		},
 		"AutomatedValuesRules": {
-			"description": "List of rules applied to the wiki. In JSON format, following the JSON Schema at rules.schema.json. Gets combined with rules defined on MediaWiki:AutomatedValues",
+			"description": "List of rules applied to the wiki. In JSON format, following the JSON Schema at schema.json. Gets combined with rules defined on MediaWiki:AutomatedValues",
 			"value": ""
 		},
 		"AutomatedValuesEnableDefiningRulesInWiki": {

@@ -23,15 +23,17 @@ class ConfigSaveTest extends AutomatedValuesMwTestCase {
 	public function testRulesAreAppliedOnEdit(): void {
 		$this->createConfigPage(
 			'
-[
-	{
-		"buildLabel": {
-			"en": {
-				"P2": "$ $"
+{
+	"rules": [
+		{
+			"buildLabel": {
+				"en": {
+					"P2": "$ $"
+				}
 			}
 		}
-	}
-]
+	]
+}
 			'
 		);
 
@@ -49,15 +51,17 @@ class ConfigSaveTest extends AutomatedValuesMwTestCase {
 
 		$this->createConfigPage(
 			'
-[
-	{
-		"buildLabel": {
-			"*": {
-				"P2": "$"
+{
+	"rules": [
+		{
+			"buildLabel": {
+				"*": {
+					"P2": "$"
+				}
 			}
 		}
-	}
-]
+	]
+}
 			'
 		);
 

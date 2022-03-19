@@ -21,7 +21,7 @@ class CombiningRulesLookup implements RulesLookup {
 	}
 
 	public function getRules(): Rules {
-		$rules = $this->deserializer->deserialize( $this->baseRules );
+		$rules = $this->deserializer->deserialize( '{"rules":' . $this->baseRules . '}' );
 
 		if ( !$this->enableWikiRules ) {
 			return $rules;

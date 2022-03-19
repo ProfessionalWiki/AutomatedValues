@@ -8,45 +8,47 @@ class TestRules {
 
 	public static function invalidJsonProvider(): iterable {
 		yield 'Rule is not an object' => [
-			'["foo"]'
+			'{"rules": ["foo"] }'
 		];
 
 		yield 'Criteria need to be an array' => [
-			'[{"when": ""}]'
+			'{"rules": [{"when": ""}] }'
 		];
 
 		yield 'Criterion statement key need to have valid property ID' => [
-			'[{"when": [{"statement": "hax", "equalTo": "foo"}]}]'
+			'{"rules": [{"when": [{"statement": "hax", "equalTo": "foo"}]}] }'
 		];
 
 		yield 'Criterion equalTo needs to be string' => [
-			'[{"when": [{"statement": "P1", "equalTo": 42}]}]'
+			'{"rules": [{"when": [{"statement": "P1", "equalTo": 42}]}] }'
 		];
 
 		yield 'Build specification keys need to be valid property IDs or ID.ID' => [
 			'
-[
-	{
-		"buildLabel": {
-			"en": {
-				"P2.P3.P4": "$ ",
-				"P2": " $",
-				"P2.P4": " $"
+{
+	"rules": [
+		{
+			"buildLabel": {
+				"en": {
+					"P2.P3.P4": "$ ",
+					"P2": " $",
+					"P2.P4": " $"
+				}
 			}
 		}
-	}
-]
+	]
+}
 			'
 		];
 	}
 
 	public static function validJsonProvider(): iterable {
 		yield 'Valid criterion' => [
-			'[{"when": [{"statement": "P1", "equalTo": "foo"}]}]'
+			'{"rules": [{"when": [{"statement": "P1", "equalTo": "foo"}]}]}'
 		];
 
 		yield 'Valid example' => [
-			file_get_contents( __DIR__ . '/../rules.example.json' )
+			file_get_contents( __DIR__ . '/../example.json' )
 		];
 	}
 

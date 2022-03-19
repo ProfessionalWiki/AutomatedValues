@@ -42,7 +42,7 @@ class RulesDeserializerTest extends TestCase {
 	}
 
 	public function testExampleRules(): void {
-		$rules = $this->newRulesDeserializer()->deserialize( file_get_contents( __DIR__ . '/../../rules.example.json' ) );
+		$rules = $this->newRulesDeserializer()->deserialize( file_get_contents( __DIR__ . '/../../example.json' ) );
 
 		$expectedRules = new Rules(
 			new Rule(

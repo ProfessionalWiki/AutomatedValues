@@ -9,7 +9,7 @@ use Opis\JsonSchema\Validator;
 class RulesJsonValidator {
 
 	public static function newInstance(): self {
-		$json = file_get_contents( __DIR__ . '/../../rules.schema.json' );
+		$json = file_get_contents( __DIR__ . '/../../schema.json' );
 
 		if ( !is_string( $json ) ) {
 			throw new \RuntimeException( 'Could not obtain JSON Schema' );

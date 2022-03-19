@@ -1,0 +1,65 @@
+{
+	"type": "object",
+
+	"properties": {
+		"rules": {
+			"type": "array",
+
+			"items": {
+				"type": "object",
+				"title": "Rule",
+
+				"properties": {
+					"ruleName": {
+						"type": "string",
+						"description": "An optional property that can be used to document the role of the rule"
+					},
+					"when": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"statement": {
+									"type": "string",
+									"pattern": "^[pP][1-9]\\d{0,9}$"
+								},
+								"equalTo": {
+									"type": "string"
+								}
+							},
+							"required": ["statement", "equalTo"],
+							"additionalProperties": false
+						}
+					},
+					"buildLabel": {
+						"$ref": "#/$defs/buildSpecs"
+					},
+					"buildAliases": {
+						"$ref": "#/$defs/buildSpecs"
+					}
+				},
+				"additionalProperties": false
+			}
+		}
+	},
+
+	"$defs": {
+		"buildSpecs": {
+			"type": "object",
+			"minProperties": 1,
+			"propertyNames": {
+				"pattern": "^(\\*|[a-zA-Z]{2,3}(-[a-zA-Z]{1,10})?)$"
+			},
+			"additionalProperties": {
+				"type": "object",
+				"minProperties": 1,
+				"propertyNames": {
+					"pattern": "^[pP][1-9]\\d{0,9}(\\.[pP][1-9]\\d{0,9})?$"
+				},
+				"additionalProperties": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

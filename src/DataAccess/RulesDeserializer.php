@@ -32,10 +32,10 @@ class RulesDeserializer {
 
 	public function deserialize( string $rulesJson ): Rules {
 		if ( $this->validator->validate( $rulesJson ) ) {
-			$arrayRules = json_decode( $rulesJson, true );
+			$array = json_decode( $rulesJson, true );
 
-			if ( is_array( $arrayRules ) ) {
-				return $this->newRules( $arrayRules );
+			if ( is_array( $array ) && array_key_exists( 'rules', $array ) ) {
+				return $this->newRules( $array['rules'] );
 			}
 		}
 

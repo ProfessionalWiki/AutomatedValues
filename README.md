@@ -61,7 +61,7 @@ Rules can be defined on page `MediaWiki:AutomatedValues`. Alternatively they can
 To define rules for your wiki, simply head over to `MediaWiki:AutomatedValues` and create the page. This page only accepts JSON that
 adheres to the [Rules JSON Schema]. If you enter invalid JSON, the page will refuse to save your changes.
 
-You can find a complete and valid example of a list of Rules, that could be placed on `MediaWiki:AutomatedValues`, at [rules.example.json].
+You can find a complete and valid example of a list of Rules, that could be placed on `MediaWiki:AutomatedValues`, at [example.json].
 
 ### Supported Entity Criteria
 
@@ -205,7 +205,7 @@ If the value of this configuration is an empty list, '*' build specifications wi
 
 ### Rules
 
-List of rules applied to the wiki. In JSON format, following the JSON Schema at rules.schema.json.
+List of rules applied to the wiki. In JSON format, following the JSON Schema at [schema.json].
 Gets combined with rules defined on page `MediaWiki:AutomatedValues`.
 
 Variable: `$wgAutomatedValuesRules`
@@ -300,5 +300,6 @@ Initial release for Wikibase 1.35+ with these features:
 [Composer]: https://getcomposer.org
 [Composer install]: https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer
 [LocalSettings.php]: https://www.mediawiki.org/wiki/Manual:LocalSettings.php
-[Rules JSON Schema]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/rules.schema.json
-[rules.example.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/rules.example.json
+[Rules JSON Schema]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
+[schema.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
+[example.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/example.json

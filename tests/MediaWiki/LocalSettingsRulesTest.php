@@ -25,15 +25,17 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 
 		$this->createConfigPage(
 			'
-[
-	{
-		"buildLabel": {
-			"de": {
-				"P2": "$"
+{
+	"rules": [
+		{
+			"buildLabel": {
+				"de": {
+					"P2": "$"
+				}
 			}
 		}
-	}
-]
+	]
+}
 			'
 		);
 
@@ -69,15 +71,17 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 
 		$this->createConfigPage(
 			'
-[
-	{
-		"buildLabel": {
-			"de": {
-				"P2": "$"
+{
+	"rules": [
+		{
+			"buildLabel": {
+				"de": {
+					"P2": "$"
+				}
 			}
 		}
-	}
-]
+	]
+}
 			'
 		);
 
