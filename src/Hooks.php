@@ -43,6 +43,8 @@ class Hooks {
 	public static function onEditFilter( EditPage $editPage, string $text, string $section, string &$error ): void {
 		if ( AutomatedValuesFactory::getInstance()->isConfigTitle( $editPage->getTitle() )
 			&& !RulesJsonValidator::newInstance()->validate( $text ) ) {
+
+			// Would be nice to show a more specific error message, but at the moment RulesJsonValidator does not support this.
 			$error = \Html::errorBox( wfMessage( 'automated-values-config-invalid' )->escaped() );
 		}
 	}
