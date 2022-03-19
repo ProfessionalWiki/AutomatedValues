@@ -7,6 +7,7 @@ namespace ProfessionalWiki\AutomatedValues;
 use EditPage;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionAccessException;
+use OutputPage;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
 use Title;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
@@ -46,6 +47,12 @@ class Hooks {
 
 			// Would be nice to show a more specific error message, but at the moment RulesJsonValidator does not support this.
 			$error = \Html::errorBox( wfMessage( 'automated-values-config-invalid' )->escaped() );
+		}
+	}
+
+	public static function onAlternateEdit( EditPage $editPage ): void {
+		if ( AutomatedValuesFactory::getInstance()->isConfigTitle( $editPage->getTitle() ) ) {
+			$editPage->suppressIntro = true;
 		}
 	}
 
