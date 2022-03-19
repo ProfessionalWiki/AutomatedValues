@@ -20,7 +20,132 @@ Automated Values has been created and is maintained by [Professional.Wiki].
 
 ## Usage
 
+The core building block of this extension are so-called "Rules".
 
+A Rule consists of zero or more Entity Criteria, which allow you to specify
+which Wikibase entities the Rule applies to. For instance "all entities where P1 is Q1", which might translate to "all entities instanceof Person".
+
+```json
+{
+	"when": [
+		{
+			"statement": "P1",
+			"equalTo": "Q1"
+		}
+	]
+}
+```
+
+A rule can also have zero or more Build Specifications. These describe how to auto automatically build
+values on matching Entities, and which languages to update. They are available both for Labels and Aliases.
+
+```json
+{
+	"buildLabel": {
+		"en": {
+			"P2": "$"
+		}
+	},
+	"buildAliases": {
+		"*": {
+			"P5.P3": "President ",
+			"P5": "$",
+			"P5.P4": ", $"
+		}
+	}
+}
+```
+
+Rules can be defined on page `MediaWiki:AutomatedValues`. Alternatively they can be defined in LocalSettings.php, see the [PHP Configuration](#php-configuration) section.
+
+To define rules for your wiki, simply head over to `MediaWiki:AutomatedValues` and create the page. This page only accepts JSON that
+adheres to the [Rules JSON Schema]. If you enter invalid JSON, the page will refuse to save your changes.
+
+You can find a complete and valid example of a list of Rules, that could be placed on `MediaWiki:AutomatedValues`, at [rules.example.json].
+
+### Supported Entity Criteria
+
+At the moment it is only possible to check equality of statement main values, and only for Properties of type String or EntityId.
+
+### Build Specifications
+
+Build Specifications are essentially templates that describe how to build the values.
+
+You can have different Build Specifications for different languages:
+
+```json
+{
+	"buildLabel": {
+		"en": {
+			"P2": "$"
+		},
+		"de": {
+			"P3": "$"
+		}
+	}
+}
+```
+
+You can also specify `*` instead of a language code, in which case the Build Specification will be applied to all default
+languages. See the [PHP Configuration](#php-configuration) section for how to set the default languages.
+
+```json
+{
+	"buildLabel": {
+		"*": {
+			"P2": "$"
+		},
+		"de": {
+			"P3": "$"
+		}
+	}
+}
+```
+
+The `$` symbol is replaced by the Main Value of the first Statement with the specified Property. Currently only strings
+are supported. Preferred Statements will be used over those with a Normal rank. If there is no matching Statement, that
+part of the value is omitted. If the resulting value is an empty string, it will be ignored.
+
+It is possible to combine multiple values and to include whitespace and other characters.
+
+```json
+{
+	"de": {
+		"P3": "$ ",
+		"P4": "$",
+		"P5": ", $"
+	}
+}
+```
+
+Assuming P4 is `foo`, P5 is `bar` and there not being a P3 Statement, the above would result in `foo, bar`.
+
+You can also get the value of Qualifiers. This is done via the `P1.P2` notation, where P1 is the Property of the Statement,
+and P2 is the Property of the Qualifier.
+
+```json
+{
+	"de": {
+		"P3": "$ ",
+		"P3.P10": "$",
+		"P3.P11": ", $"
+	}
+}
+```
+
+In case of Aliases, all matching Statements will be used, possibly resulting in multiple Aliases. The above snippet
+would create two Aliases, if there are two Statements with Property P3. This is only supported for Build Specifications
+that use a single Statement-level Property. The below snippet would result in only a single Alias, even if there are many
+Statements.
+
+```json
+{
+	"de": {
+		"P3": "$",
+		"P4": "$"
+	}
+}
+```
 
 ## Installation
 
@@ -69,7 +194,7 @@ If the value of this configuration is an empty list, '*' build specifications wi
 ### Rules
 
 List of rules applied to the wiki. In JSON format, following the JSON Schema at rules.schema.json.
-Gets combined with rules defined on MediaWiki:AutomatedValues.
+Gets combined with rules defined on page `MediaWiki:AutomatedValues`.
 
 Variable: `$wgAutomatedValuesRules`
 
@@ -163,3 +288,5 @@ Initial release for Wikibase 1.35+ with these features:
 [Composer]: https://getcomposer.org
 [Composer install]: https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer
 [LocalSettings.php]: https://www.mediawiki.org/wiki/Manual:LocalSettings.php
+[Rules JSON Schema]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/rules.schema.json
+[rules.example.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/rules.example.json
