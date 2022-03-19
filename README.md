@@ -59,7 +59,7 @@ values on matching Entities, and which languages to update. They are available b
 Rules can be defined on page `MediaWiki:AutomatedValues`. Alternatively they can be defined in LocalSettings.php, see the [PHP Configuration](#php-configuration) section.
 
 To define rules for your wiki, simply head over to `MediaWiki:AutomatedValues` and create the page. This page only accepts JSON that
-adheres to the [Rules JSON Schema]. If you enter invalid JSON, the page will refuse to save your changes.
+adheres to the [JSON Schema]. If you enter invalid JSON, the page will refuse to save your changes.
 
 You can find a complete and valid example of a list of Rules, that could be placed on `MediaWiki:AutomatedValues`, at [example.json].
 
@@ -286,12 +286,14 @@ Wikibase DataModel. In other words, the `Domain/` folder is the core of the appl
 
 ## Release notes
 
-
 ### Version 1.0.0 - TBD
 
-Initial release for Wikibase 1.35+ with these features:
+Initial release for Wikibase 1.35 - 1.37 with these features:
 
-* 
+* Ability to build labels and aliases using segmented templates
+* Ability to use both Statement Main Values and Qualifier values
+* Ability to restrict application of Rules to Entities with specific String or EntityId values for a given Property
+* Ability to define Rules on-wiki via the MediaWiki:AutomatedValues page
 
 [Professional.Wiki]: https://professional.wiki
 [Wikibase]: https://wikibase.consulting/what-is-wikibase/
@@ -300,6 +302,6 @@ Initial release for Wikibase 1.35+ with these features:
 [Composer]: https://getcomposer.org
 [Composer install]: https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer
 [LocalSettings.php]: https://www.mediawiki.org/wiki/Manual:LocalSettings.php
-[Rules JSON Schema]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
+[JSON Schema]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
 [schema.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
 [example.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/example.json
