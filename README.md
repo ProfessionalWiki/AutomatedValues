@@ -67,6 +67,9 @@ You can find a complete and valid example of a list of Rules, that could be plac
 
 At the moment it is only possible to check equality of statement main values, and only for Properties of type String or EntityId.
 
+A Rule can contain multiple Entity Criteria, in which case they all need to match for the Rule to be applied. A Rule
+can also contain no Entity Criteria, in which case it will be applied to all Entities.
+
 ### Build Specifications
 
 Build Specifications are essentially templates that describe how to build the values.
