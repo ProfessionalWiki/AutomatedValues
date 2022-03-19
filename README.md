@@ -150,6 +150,15 @@ Statements.
 }
 ```
 
+### When Rules are applied
+
+Rules are applied on every edit. They are not applied outside of edits. So if you are importing a dataset and wish
+the Rules to be applied, you need to first define the Rules and then do the import. Alternatively you can trigger
+an edit of each page with some MediaWiki script, though this functionality is not provided by the Automated Values
+extension.
+
+Rules are applied in order. In other words, the second Rule can override values set by the first Rule.
+
 ## Installation
 
 Platform requirements:
