@@ -56,23 +56,62 @@ class RulesDeserializerTest extends TestCase {
 					new TemplatedLabelSpec(
 						[ 'en' ],
 						new Template(
-							new TemplateSegment( '$ ', new PropertyId( 'P2' ), new PropertyId( 'P3' ) ),
 							new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
-							new TemplateSegment( ', $', new PropertyId( 'P2' ), new PropertyId( 'P4' ) ),
+						)
+					)
+				),
+				new AliasesSpecList()
+			),
+
+			new Rule(
+				new EntityCriteria(
+					new StatementEqualityCriterion(
+						new PropertyId( 'P1' ),
+						new StringValue( 'Q2' )
+					)
+				),
+				new LabelSpecList(
+					new TemplatedLabelSpec(
+						self::DEFAULT_LANGUAGE_CODES,
+						new Template(
+							new TemplateSegment( '$ ', new PropertyId( 'P5' ), null ),
+							new TemplateSegment( '$', new PropertyId( 'P6' ), null ),
 						)
 					)
 				),
 				new AliasesSpecList(
 					new TemplatedAliasesSpec(
-						self::DEFAULT_LANGUAGE_CODES,
+						[ 'en' ],
 						new Template(
-							new TemplateSegment( 'President ', new PropertyId( 'P5' ), new PropertyId( 'P3' ) ),
-							new TemplateSegment( '$', new PropertyId( 'P5' ), null ),
-							new TemplateSegment( ' $', new PropertyId( 'P5' ), new PropertyId( 'P4' ) ),
+							new TemplateSegment( 'The Great ', new PropertyId( 'P7' ), new PropertyId( 'P8' ) ),
+							new TemplateSegment( '$', new PropertyId( 'P7' ), null ),
+							new TemplateSegment( ' $', new PropertyId( 'P7' ), new PropertyId( 'P9' ) ),
+						)
+					),
+					new TemplatedAliasesSpec(
+						[ 'de' ],
+						new Template(
+							new TemplateSegment( 'Der große ', new PropertyId( 'P7' ), new PropertyId( 'P8' ) ),
+							new TemplateSegment( '$', new PropertyId( 'P7' ), null ),
+							new TemplateSegment( ' $', new PropertyId( 'P7' ), new PropertyId( 'P9' ) ),
 						)
 					)
 				)
-			)
+			),
+
+			new Rule(
+				new EntityCriteria(
+				),
+				new LabelSpecList(
+					new TemplatedLabelSpec(
+						[ 'en' ],
+						new Template(
+							new TemplateSegment( '$', new PropertyId( 'P42' ), null ),
+						)
+					)
+				),
+				new AliasesSpecList()
+			),
 		);
 
 		$this->assertEquals(
