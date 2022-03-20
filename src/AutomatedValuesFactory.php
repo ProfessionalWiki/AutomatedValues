@@ -44,7 +44,7 @@ class AutomatedValuesFactory {
 				$deserializer,
 				self::CONFIG_PAGE_TITLE
 			),
-			MediaWikiServices::getInstance()->getMainConfig()->get( 'AutomatedValuesEnableDefiningRulesInWiki' )
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'AutomatedValuesEnableInWikiConfig' )
 		);
 	}
 

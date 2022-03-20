@@ -40,15 +40,15 @@
 
 	"config": {
 		"AutomatedValuesDefaultLanguages": {
-			"description": "List of languages to create values for via '*' build specifications",
+			"description": "List of languages to create values for via '*' build specifications. If this value is not an empty list, it will override anything set on MediaWiki:AutomatedValues",
 			"value": []
 		},
 		"AutomatedValuesRules": {
 			"description": "List of rules applied to the wiki. In JSON format, following the JSON Schema at schema.json. Gets combined with rules defined on MediaWiki:AutomatedValues",
 			"value": ""
 		},
-		"AutomatedValuesEnableDefiningRulesInWiki": {
-			"description": "If it should be possible to define rules via MediaWiki:AutomatedValues",
+		"AutomatedValuesEnableInWikiConfig": {
+			"description": "If it should be possible to define Rules and configuration via MediaWiki:AutomatedValues",
 			"value": true
 		}
 	},

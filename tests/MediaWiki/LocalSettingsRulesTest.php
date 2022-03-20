@@ -21,7 +21,7 @@ use Wikibase\DataModel\Term\TermList;
 class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 
 	public function testLoadsOnlyLocalSettingsRules(): void {
-		$this->setMwGlobals( 'wgAutomatedValuesEnableDefiningRulesInWiki', false );
+		$this->setMwGlobals( 'wgAutomatedValuesEnableInWikiConfig', false );
 
 		$this->createConfigPage(
 			'
@@ -67,7 +67,7 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 	}
 
 	public function testLoadsBothLocalAndWikiRules(): void {
-		$this->setMwGlobals( 'wgAutomatedValuesEnableDefiningRulesInWiki', true );
+		$this->setMwGlobals( 'wgAutomatedValuesEnableInWikiConfig', true );
 
 		$this->createConfigPage(
 			'

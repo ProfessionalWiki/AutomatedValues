@@ -234,7 +234,7 @@ $wgAutomatedValuesRules = '
 
 If it should be possible to define rules via MediaWiki:AutomatedValues.
 
-Variable: `$wgAutomatedValuesEnableDefiningRulesInWiki`
+Variable: `$wgAutomatedValuesEnableInWikiConfig`
 
 Default: `true`
 
