@@ -56,4 +56,19 @@ class Hooks {
 		}
 	}
 
+	public static function onEditFormPreloadText( string &$text, Title &$title ): void {
+		if ( AutomatedValuesFactory::getInstance()->isConfigTitle( $title ) ) {
+			$text = trim( '
+{
+	"rules": [
+		{
+			"ruleName": "An optional description",
+			"when": [
+			]
+		}
+	]
+}			' );
+		}
+	}
+
 }

@@ -35,7 +35,8 @@
 		"MultiContentSave": "ProfessionalWiki\\AutomatedValues\\Hooks::onMultiContentSave",
 		"ContentHandlerDefaultModelFor": "ProfessionalWiki\\AutomatedValues\\Hooks::onContentHandlerDefaultModelFor",
 		"EditFilter": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFilter",
-		"AlternateEdit": "ProfessionalWiki\\AutomatedValues\\Hooks::onAlternateEdit"
+		"AlternateEdit": "ProfessionalWiki\\AutomatedValues\\Hooks::onAlternateEdit",
+		"EditFormPreloadText": "ProfessionalWiki\\AutomatedValues\\Hooks::onEditFormPreloadText"
 	},
 
 	"config": {
