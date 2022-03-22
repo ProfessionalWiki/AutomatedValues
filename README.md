@@ -22,6 +22,8 @@ Automated Values has been created and is maintained by [Professional.Wiki].
 
 The core building block of this extension are so-called "Rules".
 
+You can read the bellow step-by-step explanation or look immediately at [example.json].
+
 A Rule consists of zero or more Entity Criteria, which allow you to specify
 which Wikibase entities the Rule applies to. For instance "all entities where P1 is Q1", which might translate to "all entities instanceof Person".
 
