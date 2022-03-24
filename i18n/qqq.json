@@ -6,5 +6,5 @@
 	},
 	"automated-values-name": "{{notranslate}}",
 	"automated-values-description": "{{Desc|name=Automated Values|url=https://github.com/ProfessionalWiki/AutomatedValues}}",
-	"automated-values-config-invalid": "This is an error message."
+	"automated-values-config-invalid": "Error message shown when attempting to save invalid configuration on MediaWiki:AutomatedValues"
 }
