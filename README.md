@@ -10,7 +10,7 @@
 
 [Wikibase] extension that allows defining rules to automatically set labels or aliases based on Statement values.
 
-Automated Values has been created and is maintained by [Professional.Wiki].
+Automated Values has been created and is maintained by [Professional.Wiki]. Initial development was funded by the Luxembourg Ministry of Culture.
 
 - [Usage](#usage)
 - [Installation](#installation)
