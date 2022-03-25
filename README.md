@@ -12,6 +12,10 @@
 
 Automated Values has been created and is maintained by [Professional.Wiki]. The Luxembourg Ministry of Culture funded initial development.
 
+You can find a demo of this extension at https://automated.wikibase.wiki
+
+**Table of Contents**
+
 - [Usage](#usage)
 - [Installation](#installation)
 - [PHP Configuration](#php-configuration)
