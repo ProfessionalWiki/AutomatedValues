@@ -205,6 +205,8 @@ wfLoadExtension( 'AutomatedValues' );
 
 You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
 
+To enable more convenient editing of `MediaWiki:AutomatedValues`, you can optionally install the [CodeMirror extension].
+
 ## PHP Configuration
 
 Configuration can be changed via [LocalSettings.php].
@@ -323,3 +325,4 @@ Initial release for Wikibase 1.35 - 1.37 with these features:
 [JSON Schema]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
 [schema.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
 [example.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/example.json
+[CodeMirror extension]: https://www.mediawiki.org/wiki/Extension:CodeMirror
