@@ -21,7 +21,7 @@ class Template {
 		$buildValue = '';
 
 		foreach ( $this->segments as $segment ) {
-			$buildValue .= $segment->segmentToStrings( $statements )[0] ?? '';
+			$buildValue .= $segment->buildString( $statements ) ?? '';
 		}
 
 		return $buildValue;

@@ -27,22 +27,17 @@ class TemplateSegment {
 		$this->qualifierPropertyId = $qualifierProperty;
 	}
 
-	/**
-	 * @return string[]
-	 */
-	public function segmentToStrings( StatementList $statements ): array {
-		$strings = [];
-
+	public function buildString( StatementList $statements ): ?string {
 		foreach ( $this->getValuesForSegment( $statements ) as $dataValue ) {
 			if ( $dataValue instanceof StringValue ) {
-				$strings[] = $this->buildTemplate( $dataValue->getValue() );
+				return $this->replaceDollar( $dataValue->getValue() );
 			}
 		}
 
-		return $strings;
+		return null;
 	}
 
-	private function buildTemplate( string $parameter ): string {
+	private function replaceDollar( string $parameter ): string {
 		return str_replace( '$', $parameter, $this->template );
 	}
 
@@ -52,7 +47,7 @@ class TemplateSegment {
 	private function getValuesForSegment( StatementList $statements ): array {
 		$values = [];
 
-		foreach ( $statements->getByPropertyId( $this->statementPropertyId )->toArray() as $statement ) {
+		foreach ( $statements->getByPropertyId( $this->statementPropertyId )->getBestStatements()->toArray() as $statement ) {
 			$values[] = $this->getValueFromSegment( $statement );
 		}
 

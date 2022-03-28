@@ -257,23 +257,23 @@ class RulesTest extends TestCase {
 		$item = new Item( null, null, null, new StatementList(
 			$this->newStatement( 'P1', new StringValue( 'deprecated 1' ), Statement::RANK_DEPRECATED ),
 			$this->newStatement( 'P1', new StringValue( 'normal 1' ), Statement::RANK_NORMAL ),
-			$this->newStatement( 'P1', new StringValue( 'preferred 1' ), Statement::RANK_PREFERRED ),
+			$this->newStatement( 'P1', new StringValue( 'deprecated 2' ), Statement::RANK_DEPRECATED ),
 			$this->newStatement( 'P1', new StringValue( 'normal 2' ), Statement::RANK_NORMAL ),
-			$this->newStatement( 'P1', new StringValue( 'preferred 2' ), Statement::RANK_PREFERRED ),
+			$this->newStatement( 'P2', new StringValue( 'preferred but wrong statement' ), Statement::RANK_PREFERRED ),
 		) );
 
 		$rules->applyTo( $item );
 
 		$this->assertEquals(
 			new TermList( [
-				new Term( 'en', 'preferred 1' ),
+				new Term( 'en', 'normal 1' ),
 			] ),
 			$item->getLabels()
 		);
 
 		$this->assertEquals(
 			new AliasGroupList( [
-				new AliasGroup( 'en', [ 'preferred 1', 'preferred 2' ] ),
+				new AliasGroup( 'en', [ 'normal 1', 'normal 2' ] ),
 			] ),
 			$item->getAliasGroups()
 		);
