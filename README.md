@@ -62,10 +62,14 @@ values on matching Entities, and which languages to update. They are available b
 }
 ```
 
-Rules can be defined on page `MediaWiki:AutomatedValues`. Alternatively they can be defined in LocalSettings.php, see the [PHP Configuration](#php-configuration) section.
+Rules can be defined on page `MediaWiki:AutomatedValues`.  Alternatively they can be defined in LocalSettings.php, see the [PHP Configuration](#php-configuration) section.
 
 To define rules for your wiki, simply head over to `MediaWiki:AutomatedValues` and create the page. This page only accepts JSON that
 adheres to the [JSON Schema]. If you enter invalid JSON, the page will refuse to save your changes.
+
+Editing of pages in the `MediaWiki` namespace, which includes `MediaWiki:AutomatedValues`, is likely restricted to users
+with elevated permissions. By default, MediaWiki restricts editing in this namespace to people with the `editinterface` right.
+For more information, go to the page `Special:ListGroupRights#Namespace_restrictions` on your wiki.
 
 You can find a complete and valid example of a list of Rules, that could be placed on `MediaWiki:AutomatedValues`, at [example.json].
 
