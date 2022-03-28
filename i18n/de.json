@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kghbln"
+		]
+	},
+	"automated-values-description": "Ermöglicht das automatische Erstellen von Beschriftungen entsprechend definierter Regeln zu hierfür zu verwendenden Datenwerten",
+	"automated-values-config-invalid": "Die Konfiguration ist ungültig. Die Änderungen wurden nicht gespeichert."
+}

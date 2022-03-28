@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Verdy p"
+		]
+	},
+	"automated-values-description": "Création automatique de libellés et d’alias sur Wikibase, basée sur des valeurs de déclaration",
+	"automated-values-config-invalid": "Configuration incorrecte. Vos modifications n’ont pas été enregistrées."
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Josuert"
+		]
+	},
+	"automated-values-description": "Creación automática de etiquetas y alias de Wikibase basados en valores de declaración",
+	"automated-values-config-invalid": "Configuración no válida. Sus cambios no se guardaron."
+}

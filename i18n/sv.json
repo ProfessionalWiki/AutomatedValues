@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga"
+		]
+	},
+	"automated-values-description": "Skapa automatiskt etiketter och alias i Wikibase baserat på värden i uttalanden",
+	"automated-values-config-invalid": "Ogiltig konfiguration. Dina ändringar sparades inte."
+}

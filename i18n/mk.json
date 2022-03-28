@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"automated-values-description": "Автоматско создавање на натписи и истозначници во Викибазата врз основа на вредности на искази",
+	"automated-values-config-invalid": "Неважечка поставеност. Не ги зачував вашите промени."
+}
