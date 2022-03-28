@@ -31,11 +31,11 @@ class Template {
 	 * @return string[]
 	 */
 	public function buildValues( StatementList $statements ): array {
-		if ( !$this->supportsMultipleValues() ) {
-			return [ $this->buildValue( $statements ) ];
+		if ( $this->supportsMultipleValues() ) {
+			return $this->buildMultipleValues( $statements );
 		}
 
-		return $this->buildMultipleValues( $statements );
+		return [ $this->buildValue( $statements ) ];
 	}
 
 	public function supportsMultipleValues(): bool {

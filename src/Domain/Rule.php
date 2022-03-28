@@ -30,11 +30,11 @@ class Rule {
 		}
 
 		if ( $entity instanceof LabelsProvider ) {
-			$this->labelSpecList->applyTo( $entity->getLabels(), $entity->getStatements() );
+			$this->labelSpecList->applyTo( $entity->getLabels(), $entity->getStatements()->getBestStatements() );
 		}
 
 		if ( $entity instanceof AliasesProvider ) {
-			$this->aliasesSpecList->applyTo( $entity->getAliasGroups(), $entity->getStatements() );
+			$this->aliasesSpecList->applyTo( $entity->getAliasGroups(), $entity->getStatements()->getBestStatements() );
 		}
 	}
 
