@@ -171,7 +171,7 @@ Rules are applied in order. In other words, the second Rule can override values 
 
 ### Limitations
 
-* * When editing an Entity, the UI will not immediately show the updated generated values. A page reload is needed.
+* When editing an Entity, the UI will not immediately show the updated generated values. A page reload is needed.
 * You can only filter Entities based on Statement Main Values of type String or Entity ID.
 * You can only generate Labels and Aliases.
 * Rules are only applied to Entities on edit. Changing a rule will not automatically apply it everywhere.
