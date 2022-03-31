@@ -4,5 +4,6 @@
 			"Hamilton Abreu"
 		]
 	},
+	"automated-values-description": "Criação automática de etiquetas e nomes alternativos de Wikibase baseados nos valores de declaração",
 	"automated-values-config-invalid": "Configuração inválida. As suas mudanças não foram gravadas."
 }
