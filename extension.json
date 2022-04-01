@@ -8,7 +8,7 @@
 		"[https://www.EntropyWins.wtf/mediawiki Jeroen De Dauw]",
 		"[https://professional.wiki/ Professional.Wiki]"
 	],
-	
+
 	"license-name": "GPL-2.0-or-later",
 
 	"url": "https://github.com/ProfessionalWiki/AutomatedValues",
@@ -26,6 +26,10 @@
 		"AutomatedValues": [
 			"i18n"
 		]
+	},
+
+	"ExtensionMessagesFiles": {
+		"AutomatedValuesAliases": "i18n/aliases/Aliases.php"
 	},
 
 	"AutoloadNamespaces": {
@@ -54,6 +58,10 @@
 			"description": "If it should be possible to define Rules and configuration via MediaWiki:AutomatedValues",
 			"value": true
 		}
+	},
+
+	"SpecialPages": {
+		"AutomatedValues": "ProfessionalWiki\\AutomatedValues\\SpecialAutomatedValues"
 	},
 
 	"ResourceFileModulePaths": {
