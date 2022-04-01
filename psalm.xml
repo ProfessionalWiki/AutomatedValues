@@ -33,6 +33,7 @@
 		<PropertyNotSetInConstructor>
 			<errorLevel type="suppress">
 				<directory name="tests" />
+				<file name="src/SpecialAutomatedValues.php" />
 			</errorLevel>
 		</PropertyNotSetInConstructor>
 		<UndefinedConstant errorLevel="suppress" />
