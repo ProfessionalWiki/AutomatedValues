@@ -6,5 +6,6 @@
 	},
 	"automated-values-name": "{{notranslate}}",
 	"automated-values-description": "{{Desc|name=Automated Values|url=https://github.com/ProfessionalWiki/AutomatedValues}}",
-	"automated-values-config-invalid": "Error message shown when attempting to save invalid configuration on MediaWiki:AutomatedValues"
+	"automated-values-config-invalid": "Error message shown when attempting to save invalid configuration on MediaWiki:AutomatedValues",
+	"special-automated-values": "This is the label on \"Special:SpecialPages\" linking to \"MediaWiki:AutomatedValues\". Can also be translated as \"Configure automatic creation of aliases or labels for items\"."
 }

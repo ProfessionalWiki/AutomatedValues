@@ -4,6 +4,7 @@
 			"Kghbln"
 		]
 	},
-	"automated-values-description": "Ermöglicht das automatische Erstellen von Beschriftungen entsprechend definierter Regeln zu hierfür zu verwendenden Datenwerten",
-	"automated-values-config-invalid": "Die Konfiguration ist ungültig. Die Änderungen wurden nicht gespeichert."
+	"automated-values-description": "Ermöglicht das automatische Erstellen von Beschriftungen oder Aliassen entsprechend definierter Regeln zu hierfür zu verwendenden Datenwerten",
+	"automated-values-config-invalid": "Die Konfiguration ist ungültig. Die Änderungen wurden nicht gespeichert.",
+	"special-automated-values": "Automatisiertes Erstellen von Aliassen oder Beschriftungen für Datenobjekte konfigurieren"
 }
