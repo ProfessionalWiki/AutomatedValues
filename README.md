@@ -100,7 +100,8 @@ You can have different Build Specifications for different languages:
 ```
 
 You can also specify `*` instead of a language code, in which case the Build Specification will be applied to all default
-languages. See the [PHP Configuration](#php-configuration) section for how to set the default languages.
+languages. See the [PHP Configuration](#php-configuration) section for how to set the default languages. If the default
+languages are not set, `*` will be ignored.
 
 ```json
 {
