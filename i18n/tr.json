@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hedda",
 			"Oyuncu"
 		]
 	},
 	"automated-values-description": "İfade değerlerine dayalı olarak Wikibase etiketlerinin ve takma adlarının otomatik olarak oluşturulması",
-	"automated-values-config-invalid": "Geçersiz yapılandırma. Değişiklikleriniz kaydedilmedi."
+	"automated-values-config-invalid": "Geçersiz yapılandırma. Değişiklikleriniz kaydedilmedi.",
+	"special-automated-values": "Otomatik Değerler yapılandırması"
 }
