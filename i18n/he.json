@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"automated-values-description": "יצירה אוטומטית של תוויות וכינויים של ויקיבייס לפי ערכי קביעות",
+	"automated-values-config-invalid": "הגדרות בלתי־תקינות. השינויים שלך לא נשמרו.",
+	"special-automated-values": "הגדרות ערכים אוטומטיים"
+}
