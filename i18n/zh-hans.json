@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"StarrySky"
+		]
+	},
+	"automated-values-description": "根据语句值自动创建 Wikibase 标签和别名",
+	"automated-values-config-invalid": "尝试在 MediaWiki 上保存无效配置时显示错误消息：AutomatedValues",
+	"special-automated-values": "自动值配置"
+}
