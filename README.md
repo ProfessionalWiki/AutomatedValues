@@ -307,7 +307,7 @@ Wikibase DataModel. In other words, the `Domain/` folder is the core of the appl
 
 ## Release notes
 
-### Version 1.0.0 - TBD
+### Version 1.0.0 - 2022-04-29
 
 Initial release for Wikibase 1.35 - 1.37 with these features:
 
