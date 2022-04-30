@@ -285,7 +285,7 @@ To ensure the dev dependencies get installed, have this in your `composer.local.
 
 ### Running tests and CI checks
 
-You can use the `Makefile` by running make commands in the `` directory.
+You can use the `Makefile` by running make commands in the `AutomatedValues` directory.
 
 * `make ci`: Run everything
 * `make test`: Run all tests
