@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"automated-values-description": "依據陳述內容來自動建立 Wikibase 標籤與別名",
+	"automated-values-config-invalid": "無效設置。無法儲存您的更改。",
+	"special-automated-values": "自動值設置"
+}
