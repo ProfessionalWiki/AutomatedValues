@@ -309,7 +309,7 @@ Wikibase DataModel. In other words, the `Domain/` folder is the core of the appl
 
 ### Version 1.0.0 - 2022-04-29
 
-Initial release for Wikibase 1.35 - 1.37 with these features:
+Initial release for Wikibase 1.35 - 1.37 ([Release announcement], [Demo video]) with these features:
 
 * Ability to build labels and aliases using segmented templates
 * Ability to use both Statement Main Values and Qualifier values
@@ -327,3 +327,5 @@ Initial release for Wikibase 1.35 - 1.37 with these features:
 [schema.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/schema.json
 [example.json]: https://github.com/ProfessionalWiki/AutomatedValues/blob/master/example.json
 [CodeMirror extension]: https://www.mediawiki.org/wiki/Extension:CodeMirror
+[Release announcement]: https://www.wikibase.consulting/automating-values-in-wikibase/
+[Demo video]: https://www.youtube.com/watch?v=BO58wulCFVU
