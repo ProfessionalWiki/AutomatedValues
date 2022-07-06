@@ -24,6 +24,8 @@ You can find a demo of this extension at https://automated.wikibase.wiki
 
 ## Usage
 
+<a href="https://www.youtube.com/watch?v=BO58wulCFVU"><img src=".github/youtube.png" width="430px" title="Play video" /></a>
+
 The core building block of this extension are so-called "Rules".
 
 You can read the bellow step-by-step explanation or look immediately at [example.json].
@@ -233,7 +235,7 @@ Variable: `$wgAutomatedValuesRules`
 
 Default: `""`
 
-Example: 
+Example:
 
 ```php
 $wgAutomatedValuesRules = '
@@ -303,7 +305,7 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 The `Domain/` folder contains the domain model, which is both independent of MediaWiki code and wiki concepts beyond the
 Wikibase DataModel. In other words, the `Domain/` folder is the core of the application, with no outgoing dependencies.
 
-`Hooks.php` acts as entry point. `AutomatedValuesFactory` is the top level factory, responsible for object graph construction. 
+`Hooks.php` acts as entry point. `AutomatedValuesFactory` is the top level factory, responsible for object graph construction.
 
 ## Release notes
 
