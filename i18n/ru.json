@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pacha Tchernof"
+		]
+	},
+	"automated-values-description": "Автоматическое создание меток и псевдонимов в викибазе на основе значений в утверждении",
+	"automated-values-config-invalid": "Недействительная настройка. Ваши изменения не были сохранены.",
+	"special-automated-values": "Настройка Автоматизированных значений"
+}
