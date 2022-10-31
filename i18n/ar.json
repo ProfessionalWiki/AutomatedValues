@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"automated-values-description": "الإنشاء التلقائي لعناوين Wikibase والأسماء المستعارة بناءً على قيم البيان",
+	"automated-values-config-invalid": "تكوين غير صحيح. لم يتم حفظ التغييرات الخاصة بك.",
+	"special-automated-values": "تكوين القيم المؤتمتة"
+}
