@@ -34,5 +34,10 @@
 	},
 	"extra": {
 		"installer-name": "AutomatedValues"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
 	}
 }
