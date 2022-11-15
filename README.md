@@ -10,7 +10,9 @@
 
 [Wikibase] extension that allows defining rules to automatically set labels or aliases based on Statement values.
 
-Automated Values has been created and is maintained by [Professional.Wiki]. The Luxembourg Ministry of Culture funded initial development.
+[Professional.Wiki] created and maintains Automated Values. We provide [Wikibase hosting], [Wikibase development] and [Wikibase consulting].
+
+Automated Values was created for the Luxembourg Ministry of Culture, who funded initial development.
 
 You can find a demo of this extension at https://automated.wikibase.wiki
 
@@ -320,6 +322,9 @@ Initial release for Wikibase 1.35 - 1.37 ([Release announcement], [Demo video]) 
 
 [Professional.Wiki]: https://professional.wiki
 [Wikibase]: https://wikibase.consulting/what-is-wikibase/
+[Wikibase hosting]: https://professional.wiki/en/hosting/wikibase
+[Wikibase development]: https://www.wikibase.consulting/about-the-wikibase-team/
+[Wikibase consulting]: https://wikibase.consulting/
 [MediaWiki]: https://www.mediawiki.org
 [PHP]: https://www.php.net
 [Composer]: https://getcomposer.org
