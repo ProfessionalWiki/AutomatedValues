@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fúlvio"
+		]
+	},
+	"automated-values-description": "Criação automática de etiquetas e aliases do Wikibase com base em valores de declaração",
+	"automated-values-config-invalid": "Configuração inválida. Suas alterações não foram salvas.",
+	"special-automated-values": "Configuração de valores automatizados"
+}
