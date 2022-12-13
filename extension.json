@@ -69,16 +69,5 @@
 		"remoteExtPath": "AutomatedValues/resources"
 	},
 
-	"ResourceModules": {
-		"ext.automated.values": {
-			"dependencies": [
-			],
-			"scripts": [
-			],
-			"styles": [
-			]
-		}
-	},
-
 	"manifest_version": 2
 }
