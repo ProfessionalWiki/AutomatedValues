@@ -1,6 +1,6 @@
 # Automated Values
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ProfessionalWiki/AutomatedValues/CI)](https://github.com/ProfessionalWiki/AutomatedValues/actions?query=workflow%3ACI)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ProfessionalWiki/AutomatedValues/ci.yml?branch=master)](https://github.com/ProfessionalWiki/AutomatedValues/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/ProfessionalWiki/AutomatedValues/branch/master/graph/badge.svg?token=GnOG3FF16Z)](https://codecov.io/gh/ProfessionalWiki/AutomatedValues)
 [![Type Coverage](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues/coverage.svg)](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues)
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues/level.svg)](psalm.xml)
