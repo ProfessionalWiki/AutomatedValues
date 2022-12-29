@@ -4,5 +4,7 @@
 			"McDutchie"
 		]
 	},
-	"automated-values-description": "Creation automatic de etiquettas e aliases sur Wikibase, basate sur valores de declarationes"
+	"automated-values-description": "Creation automatic de etiquettas e aliases sur Wikibase, basate sur valores de declarationes",
+	"automated-values-config-invalid": "Configuration incorrecte. Le modificationes non ha essite salveguardate.",
+	"special-automated-values": "Configuration de valores automatisate"
 }
