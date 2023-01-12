@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"automated-values-description": "Samodejno ustvarjanje oznak Wikibase in sopomenk na podlagi vrednosti izjav",
+	"automated-values-config-invalid": "Neveljavna konfiguracija. Vaše spremembe se niso shranile.",
+	"special-automated-values": "Konfiguriranje samodejnega ustvarjanja vzdevkov ali oznak za podatkovne predmete"
+}
