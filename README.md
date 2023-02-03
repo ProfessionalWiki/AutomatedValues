@@ -323,7 +323,7 @@ Initial release for Wikibase 1.35 - 1.37 ([Release announcement], [Demo video]) 
 [Professional.Wiki]: https://professional.wiki
 [Wikibase]: https://wikibase.consulting/what-is-wikibase/
 [Wikibase hosting]: https://professional.wiki/en/hosting/wikibase
-[Wikibase development]: https://www.wikibase.consulting/about-the-wikibase-team/
+[Wikibase development]: https://professional.wiki/en/wikibase-software-development
 [Wikibase consulting]: https://wikibase.consulting/
 [MediaWiki]: https://www.mediawiki.org
 [PHP]: https://www.php.net
