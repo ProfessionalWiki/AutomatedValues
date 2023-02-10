@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Integration;
 
-use Compat;
+use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\DataValue;
 use DataValues\NumberValue;
 use DataValues\StringValue;

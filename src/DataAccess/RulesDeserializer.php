@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\DataAccess;
 
-use Compat;
 use DataValues\StringValue;
 use ProfessionalWiki\AutomatedValues\Domain\AliasesSpecList;
 use ProfessionalWiki\AutomatedValues\Domain\EntityCriteria;
@@ -16,6 +15,7 @@ use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
+use ProfessionalWiki\AutomatedValues\Compat;
 
 class RulesDeserializer {
 

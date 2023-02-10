@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
-use Compat;
+use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\NumberValue;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;

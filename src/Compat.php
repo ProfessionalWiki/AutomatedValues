@@ -2,6 +2,8 @@
 
 declare( strict_types = 1 );
 
+namespace ProfessionalWiki\AutomatedValues;
+
 use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\Entity\PropertyId;
 
