@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\MediaWiki;
 
+use Compat;
 use DataValues\StringValue;
 use Wikibase\DataModel\Entity\Property;
 use Wikibase\DataModel\Entity\PropertyId;
@@ -37,8 +38,8 @@ class ConfigSaveTest extends AutomatedValuesMwTestCase {
 			'
 		);
 
-		$property = new Property( new PropertyId( 'P2' ), null, 'string' );
-		$property->getStatements()->addNewStatement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( 'main' ) ) );
+		$property = new Property( Compat::newPId( 'P2' ), null, 'string' );
+		$property->getStatements()->addNewStatement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( 'main' ) ) );
 
 		$this->assertSame(
 			'main main',
@@ -65,8 +66,8 @@ class ConfigSaveTest extends AutomatedValuesMwTestCase {
 			'
 		);
 
-		$property = new Property( new PropertyId( 'P2' ), null, 'string' );
-		$property->getStatements()->addNewStatement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( 'expected' ) ) );
+		$property = new Property( Compat::newPId( 'P2' ), null, 'string' );
+		$property->getStatements()->addNewStatement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( 'expected' ) ) );
 
 		$this->assertEquals(
 			new TermList( [

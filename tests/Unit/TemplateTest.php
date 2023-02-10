@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
+use Compat;
 use DataValues\NumberValue;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
@@ -31,21 +32,21 @@ class TemplateTest extends TestCase {
 		$this->assertSame(
 			'',
 			( new Template() )->buildValue( new StatementList(
-				new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
-				new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
+				new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( '111' ) ) ),
+				new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( '222' ) ) ),
 			) )
 		);
 	}
 
 	public function testMainSnakValueHappyPath(): void {
 		$template = new Template(
-			new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
-			new TemplateSegment( ', $', new PropertyId( 'P1' ), null ),
+			new TemplateSegment( '$', Compat::newPId( 'P2' ), null ),
+			new TemplateSegment( ', $', Compat::newPId( 'P1' ), null ),
 		);
 
 		$statements = new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( '111' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( '222' ) ) ),
 		);
 
 		$this->assertSame(
@@ -56,15 +57,15 @@ class TemplateTest extends TestCase {
 
 	public function testPropertiesThatAreNotFoundAreOmitted(): void {
 		$template = new Template(
-			new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
-			new TemplateSegment( ', $', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( '$', new PropertyId( 'P3' ), null ),
-			new TemplateSegment( '$', new PropertyId( 'P5' ), null ),
+			new TemplateSegment( '$', Compat::newPId( 'P2' ), null ),
+			new TemplateSegment( ', $', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( '$', Compat::newPId( 'P3' ), null ),
+			new TemplateSegment( '$', Compat::newPId( 'P5' ), null ),
 		);
 
 		$statements = new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P3' ), new StringValue( '333' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P4' ), new StringValue( '444' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P3' ), new StringValue( '333' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P4' ), new StringValue( '444' ) ) ),
 		);
 
 		$this->assertSame(
@@ -75,17 +76,17 @@ class TemplateTest extends TestCase {
 
 	public function testNonStringValuesAreOmitted(): void {
 		$template = new Template(
-			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( 'p2: $ ', new PropertyId( 'P2' ), null ),
-			new TemplateSegment( 'p3: $ ', new PropertyId( 'P3' ), null ),
-			new TemplateSegment( 'p4: $ ', new PropertyId( 'P4' ), null ),
+			new TemplateSegment( 'p1: $ ', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( 'p2: $ ', Compat::newPId( 'P2' ), null ),
+			new TemplateSegment( 'p3: $ ', Compat::newPId( 'P3' ), null ),
+			new TemplateSegment( 'p4: $ ', Compat::newPId( 'P4' ), null ),
 		);
 
 		$statements = new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new NumberValue( 222 ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P3' ), new EntityIdValue( new PropertyId( 'P3' ) ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P4' ), new StringValue( '444' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( '111' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new NumberValue( 222 ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P3' ), new EntityIdValue( Compat::newPId( 'P3' ) ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P4' ), new StringValue( '444' ) ) ),
 		);
 
 		$this->assertSame(
@@ -96,22 +97,22 @@ class TemplateTest extends TestCase {
 
 	public function testSpecWithQualifiersHappyPath(): void {
 		$template = new Template(
-			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
-			new TemplateSegment( 'p2: $ ', new PropertyId( 'P2' ), null ),
+			new TemplateSegment( 'p1.p5: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P5' ) ),
+			new TemplateSegment( 'p1: $ ', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( 'p1.p6: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P6' ) ),
+			new TemplateSegment( 'p2: $ ', Compat::newPId( 'P2' ), null ),
 		);
 
 		$statements = new StatementList(
 			new Statement(
-				new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ),
+				new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( '111' ) ),
 				new SnakList( [
-					new PropertyValueSnak( new PropertyId( 'P4' ), new StringValue( '444' ) ),
-					new PropertyValueSnak( new PropertyId( 'P5' ), new StringValue( '555' ) ),
-					new PropertyValueSnak( new PropertyId( 'P6' ), new StringValue( '666' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P4' ), new StringValue( '444' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P5' ), new StringValue( '555' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P6' ), new StringValue( '666' ) ),
 				] )
 			),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( '222' ) ) ),
 		);
 
 		$this->assertSame(
@@ -122,23 +123,23 @@ class TemplateTest extends TestCase {
 
 	public function testMissingAndNonStringQualifiersAreOmitted(): void {
 		$template = new Template(
-			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new TemplateSegment( 'p1.p6: $ ', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
-			new TemplateSegment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
-			new TemplateSegment( 'p1.p8: $ ', new PropertyId( 'P1' ), new PropertyId( 'P8' ) ),
+			new TemplateSegment( 'p1.p5: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P5' ) ),
+			new TemplateSegment( 'p1.p6: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P6' ) ),
+			new TemplateSegment( 'p1.p7: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P7' ) ),
+			new TemplateSegment( 'p1.p8: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P8' ) ),
 		);
 
 		$statements = new StatementList(
 			new Statement(
-				new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ),
+				new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( '111' ) ),
 				new SnakList( [
-					new PropertyValueSnak( new PropertyId( 'P4' ), new StringValue( '444' ) ),
-					new PropertyValueSnak( new PropertyId( 'P6' ), new StringValue( '666' ) ),
-					new PropertyValueSnak( new PropertyId( 'P7' ), new NumberValue( 777 ) ),
-					new PropertyValueSnak( new PropertyId( 'P8' ), new StringValue( '888' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P4' ), new StringValue( '444' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P6' ), new StringValue( '666' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P7' ), new NumberValue( 777 ) ),
+					new PropertyValueSnak( Compat::newPId( 'P8' ), new StringValue( '888' ) ),
 				] )
 			),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( '222' ) ) ),
 		);
 
 		$this->assertSame(
@@ -149,22 +150,22 @@ class TemplateTest extends TestCase {
 
 	public function testBuildsMultipleValues(): void {
 		$template = new Template(
-			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( 'p1.p7: $ ', new PropertyId( 'P1' ), new PropertyId( 'P7' ) ),
+			new TemplateSegment( 'p1.p5: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P5' ) ),
+			new TemplateSegment( 'p1: $ ', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( 'p1.p7: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P7' ) ),
 		);
 
 		$statements = new StatementList(
 			new Statement(
-				new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'First' ) ),
+				new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'First' ) ),
 				new SnakList( [
-					new PropertyValueSnak( new PropertyId( 'P5' ), new StringValue( '555' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P5' ), new StringValue( '555' ) ),
 				] )
 			),
 			new Statement(
-				new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'Second' ) ),
+				new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'Second' ) ),
 				new SnakList( [
-					new PropertyValueSnak( new PropertyId( 'P7' ), new StringValue( '777' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P7' ), new StringValue( '777' ) ),
 				] )
 			)
 		);
@@ -180,22 +181,22 @@ class TemplateTest extends TestCase {
 
 	public function testBuildsSingleValueWhenMultipleStatementPropertiesAreUsed(): void {
 		$template = new Template(
-			new TemplateSegment( 'p1.p5: $ ', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new TemplateSegment( 'p1: $ ', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( 'p2.p7: $ ', new PropertyId( 'P2' ), new PropertyId( 'P7' ) ),
+			new TemplateSegment( 'p1.p5: $ ', Compat::newPId( 'P1' ), Compat::newPId( 'P5' ) ),
+			new TemplateSegment( 'p1: $ ', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( 'p2.p7: $ ', Compat::newPId( 'P2' ), Compat::newPId( 'P7' ) ),
 		);
 
 		$statements = new StatementList(
 			new Statement(
-				new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'First' ) ),
+				new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'First' ) ),
 				new SnakList( [
-					new PropertyValueSnak( new PropertyId( 'P5' ), new StringValue( '555' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P5' ), new StringValue( '555' ) ),
 				] )
 			),
 			new Statement(
-				new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( 'Second' ) ),
+				new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( 'Second' ) ),
 				new SnakList( [
-					new PropertyValueSnak( new PropertyId( 'P7' ), new StringValue( '777' ) ),
+					new PropertyValueSnak( Compat::newPId( 'P7' ), new StringValue( '777' ) ),
 				] )
 			)
 		);
@@ -210,7 +211,7 @@ class TemplateTest extends TestCase {
 
 	public function testSinglePropertySupportsMultipleValues(): void {
 		$spec = new Template(
-			new TemplateSegment( '', new PropertyId( 'P1' ), null )
+			new TemplateSegment( '', Compat::newPId( 'P1' ), null )
 		);
 
 		$this->assertTrue( $spec->supportsMultipleValues() );
@@ -218,8 +219,8 @@ class TemplateTest extends TestCase {
 
 	public function testMultiPropertyDoesNotSupportMultipleValues(): void {
 		$spec = new Template(
-			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( '', new PropertyId( 'P2' ), null ),
+			new TemplateSegment( '', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( '', Compat::newPId( 'P2' ), null ),
 		);
 
 		$this->assertFalse( $spec->supportsMultipleValues() );
@@ -227,9 +228,9 @@ class TemplateTest extends TestCase {
 
 	public function testPropertyWithQualifiersSupportsMultipleValues(): void {
 		$spec = new Template(
-			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P6' ) ),
+			new TemplateSegment( '', Compat::newPId( 'P1' ), Compat::newPId( 'P5' ) ),
+			new TemplateSegment( '', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( '', Compat::newPId( 'P1' ), Compat::newPId( 'P6' ) ),
 		);
 
 		$this->assertTrue( $spec->supportsMultipleValues() );
@@ -237,9 +238,9 @@ class TemplateTest extends TestCase {
 
 	public function testPropertyWithOtherQualifiersDoesNotSupportMultipleValues(): void {
 		$spec = new Template(
-			new TemplateSegment( '', new PropertyId( 'P1' ), new PropertyId( 'P5' ) ),
-			new TemplateSegment( '', new PropertyId( 'P1' ), null ),
-			new TemplateSegment( '', new PropertyId( 'P2' ), new PropertyId( 'P6' ) ),
+			new TemplateSegment( '', Compat::newPId( 'P1' ), Compat::newPId( 'P5' ) ),
+			new TemplateSegment( '', Compat::newPId( 'P1' ), null ),
+			new TemplateSegment( '', Compat::newPId( 'P2' ), Compat::newPId( 'P6' ) ),
 		);
 
 		$this->assertFalse( $spec->supportsMultipleValues() );

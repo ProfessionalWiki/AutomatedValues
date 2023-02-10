@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\MediaWiki;
 
+use Compat;
 use DataValues\StringValue;
 use Wikibase\DataModel\Entity\Property;
 use Wikibase\DataModel\Entity\PropertyId;
@@ -54,9 +55,9 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 			'
 		);
 
-		$property = new Property( new PropertyId( 'P3' ), null, 'string' );
-		$property->getStatements()->addNewStatement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( 'not expected' ) ) );
-		$property->getStatements()->addNewStatement( new PropertyValueSnak( new PropertyId( 'P3' ), new StringValue( 'expected' ) ) );
+		$property = new Property( Compat::newPId( 'P3' ), null, 'string' );
+		$property->getStatements()->addNewStatement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( 'not expected' ) ) );
+		$property->getStatements()->addNewStatement( new PropertyValueSnak( Compat::newPId( 'P3' ), new StringValue( 'expected' ) ) );
 
 		$this->assertEquals(
 			new TermList( [
@@ -100,9 +101,9 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 			'
 		);
 
-		$property = new Property( new PropertyId( 'P3' ), null, 'string' );
-		$property->getStatements()->addNewStatement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( 'also expected' ) ) );
-		$property->getStatements()->addNewStatement( new PropertyValueSnak( new PropertyId( 'P3' ), new StringValue( 'expected' ) ) );
+		$property = new Property( Compat::newPId( 'P3' ), null, 'string' );
+		$property->getStatements()->addNewStatement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( 'also expected' ) ) );
+		$property->getStatements()->addNewStatement( new PropertyValueSnak( Compat::newPId( 'P3' ), new StringValue( 'expected' ) ) );
 
 		$this->assertEquals(
 			new TermList( [
