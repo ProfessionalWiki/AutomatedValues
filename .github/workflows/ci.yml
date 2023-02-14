@@ -183,9 +183,9 @@ jobs:
                 path: EarlyCopy
 
           - name: Install MediaWiki
-            # if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+            if: steps.cache-mediawiki.outputs.cache-hit != 'true'
             working-directory: ~
-            run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_37 AutomatedValues
+            run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_38 AutomatedValues
 
           - uses: actions/checkout@v2
             with:
