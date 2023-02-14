@@ -13,6 +13,7 @@ class Compat {
 		if ( class_exists( NumericPropertyId::class ) ) {
 			return new NumericPropertyId( $id );
 		}
+		/** @phpstan-ignore-next-line */
 		return new PropertyId( $id );
 	}
 
