@@ -9,6 +9,11 @@ use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\Entity\PropertyId;
 
 class Compat {
+	/**
+	 * @param string $id
+	 *
+	 * @return PropertyId
+	 */
 	public static function newPId( string $id ): PropertyId {
 		if ( class_exists( NumericPropertyId::class ) ) {
 			return new NumericPropertyId( $id );
