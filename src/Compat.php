@@ -13,6 +13,9 @@ class Compat {
 	 * @param string $id
 	 *
 	 * @return PropertyId
+	 * @psalm-suppress MixedInferredReturnType
+	 * @psalm-suppress MixedReturnStatement
+	 * @psalm-suppress InterfaceInstantiation
 	 */
 	public static function newPId( string $id ): PropertyId {
 		if ( class_exists( NumericPropertyId::class ) ) {
