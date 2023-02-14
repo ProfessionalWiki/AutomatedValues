@@ -6,6 +6,7 @@ namespace ProfessionalWiki\AutomatedValues\Domain;
 
 use DataValues\DataValue;
 use DataValues\StringValue;
+use ProfessionalWiki\AutomatedValues\Compat;
 use Wikibase\DataModel\Entity\EntityIdValue;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
@@ -44,8 +45,7 @@ class StatementEqualityCriterion implements EntityCriterion {
 		if ( $dataValue instanceof EntityIdValue && $this->expectedValue instanceof StringValue ) {
 			return $dataValue->getEntityId()->getSerialization() === $this->expectedValue->getValue();
 		}
-
-		return $dataValue->equals( $this->expectedValue );
+		return Compat::dataValueEquals( $dataValue, $this->expectedValue);
 	}
 
 }
