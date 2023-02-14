@@ -10,10 +10,10 @@ use Wikibase\DataModel\Entity\PropertyId;
 
 class Compat {
 	public static function newPId( string $id ): PropertyId {
-		// if ( class_exists( NumericPropertyId::class ) ) {
+		if ( class_exists( NumericPropertyId::class ) ) {
 			return new NumericPropertyId( $id );
-		// }
-		// return new PropertyId( $id );
+		}
+		return new PropertyId( $id );
 	}
 	/**
 	 * @param DataValue $a
@@ -22,9 +22,9 @@ class Compat {
 	 * @return bool
 	 */
 	public static function dataValueEquals( $a, $b ): bool {
-		if ( $a === $b )
+		if ( $a === $b ) {
 			return true;
-		return $b instanceof DataValue
-			&& $a->serialize() === $b->serialize();
+		}
+		return $b instanceof DataValue && $a->serialize() === $b->serialize();
 	}
 }
