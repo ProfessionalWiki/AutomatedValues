@@ -15,6 +15,7 @@ class Compat {
 		}
 		return new PropertyId( $id );
 	}
+
 	/**
 	 * @param DataValue $a
 	 * @param mixed $b
@@ -27,4 +28,5 @@ class Compat {
 		}
 		return $b instanceof DataValue && $a->serialize() === $b->serialize();
 	}
+
 }
