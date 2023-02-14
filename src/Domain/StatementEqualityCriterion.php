@@ -45,7 +45,7 @@ class StatementEqualityCriterion implements EntityCriterion {
 		if ( $dataValue instanceof EntityIdValue && $this->expectedValue instanceof StringValue ) {
 			return $dataValue->getEntityId()->getSerialization() === $this->expectedValue->getValue();
 		}
-		return Compat::dataValueEquals( $dataValue, $this->expectedValue);
+		return Compat::dataValueEquals( $dataValue, $this->expectedValue );
 	}
 
 }
