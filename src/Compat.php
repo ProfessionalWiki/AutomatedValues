@@ -25,6 +25,6 @@ class Compat {
 		if ( $a === $b )
 			return true;
 		return $b instanceof DataValue
-			&& $a->serialization === $b->serialization;
+			&& $a->serialize() === $b->serialize();
 	}
 }
