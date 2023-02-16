@@ -13,6 +13,7 @@
 			<file name="src/DataAccess/RulesDeserializer.php" />
 			<file name="src/Hooks.php" />
 			<file name="src/AutomatedValuesFactory.php" />
+			<file name="src/Compat.php" />
 			<directory name="tests/MediaWiki" />
 		</ignoreFiles>
     </projectFiles>
@@ -24,7 +25,7 @@
 	<extraFiles>
 		<directory name="../../includes" />
 		<directory name="../../vendor/wikimedia" />
-		<!-- <directory name="../../vendor/wikibase" /> -->
+		<directory name="../../vendor/wikibase" />
 		<directory name="../../vendor/data-values" />
 		<directory name="../../extensions/Wikibase" />
 	</extraFiles>
