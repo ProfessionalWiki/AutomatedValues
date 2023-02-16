@@ -7,7 +7,6 @@ namespace ProfessionalWiki\AutomatedValues\Tests\MediaWiki;
 use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\StringValue;
 use Wikibase\DataModel\Entity\Property;
-use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Term\Term;
 use Wikibase\DataModel\Term\TermList;
@@ -31,7 +30,7 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 		{
 			"buildLabel": {
 				"de": {
-					"P2": "$"
+					"P2": "$ "
 				}
 			}
 		}
@@ -47,7 +46,7 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 	{
 		"buildLabel": {
 			"en": {
-				"P3": "$"
+				"P3": "$ "
 			}
 		}
 	}
@@ -61,7 +60,7 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 
 		$this->assertEquals(
 			new TermList( [
-				new Term( 'en', 'expected' ),
+				new Term( 'en', 'expected ' ),
 			] ),
 			$this->privateSaveAndLoadProperty( $property )->getLabels()
 		);
@@ -77,7 +76,7 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 		{
 			"buildLabel": {
 				"de": {
-					"P2": "$"
+					"P2": "$ "
 				}
 			}
 		}
@@ -93,7 +92,7 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 	{
 		"buildLabel": {
 			"en": {
-				"P3": "$"
+				"P3": "$ "
 			}
 		}
 	}
@@ -107,8 +106,8 @@ class LocalSettingsRulesTest extends AutomatedValuesMwTestCase {
 
 		$this->assertEquals(
 			new TermList( [
-				new Term( 'en', 'expected' ),
-				new Term( 'de', 'also expected' ),
+				new Term( 'en', 'expected ' ),
+				new Term( 'de', 'also expected ' ),
 			] ),
 			$this->privateSaveAndLoadProperty( $property )->getLabels()
 		);

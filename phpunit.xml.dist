@@ -7,7 +7,7 @@
 			<directory>tests/Integration</directory>
 		</testsuite>
 		<testsuite name="TestExampleRules">
-			<file>tests/TestExampleRules.php</file>
+			<file>tests/TestRules.php</file>
 		</testsuite>
 		<testsuite name="MediaWiki">
 			<directory>tests/MediaWiki</directory>

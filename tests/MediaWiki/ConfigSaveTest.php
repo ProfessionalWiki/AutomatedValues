@@ -7,7 +7,6 @@ namespace ProfessionalWiki\AutomatedValues\Tests\MediaWiki;
 use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\StringValue;
 use Wikibase\DataModel\Entity\Property;
-use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Term\Term;
 use Wikibase\DataModel\Term\TermList;
