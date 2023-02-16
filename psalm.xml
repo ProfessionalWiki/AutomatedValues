@@ -13,7 +13,6 @@
 			<file name="src/DataAccess/RulesDeserializer.php" />
 			<file name="src/Hooks.php" />
 			<file name="src/AutomatedValuesFactory.php" />
-			<file name="src/Compat.php" />
 			<directory name="tests/MediaWiki" />
 		</ignoreFiles>
     </projectFiles>
