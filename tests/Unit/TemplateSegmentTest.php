@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
+use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\DataValue;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +20,7 @@ use Wikibase\DataModel\Statement\StatementList;
 class TemplateSegmentTest extends TestCase {
 
 	public function testUsesFirstOfTheBestStatements(): void {
-		$segment = new TemplateSegment( '$', new PropertyId( 'P1' ), null );
+		$segment = new TemplateSegment( '$', Compat::newPId( 'P1' ), null );
 
 		$this->assertSame(
 			'First preferred',
@@ -36,7 +37,7 @@ class TemplateSegmentTest extends TestCase {
 	}
 
 	private function newStatement( string $pId, DataValue $value, int $rank ): Statement {
-		$statement = new Statement( new PropertyValueSnak( new PropertyId( $pId ), $value ) );
+		$statement = new Statement( new PropertyValueSnak( Compat::newPId( $pId ), $value ) );
 		$statement->setRank( $rank );
 		return $statement;
 	}

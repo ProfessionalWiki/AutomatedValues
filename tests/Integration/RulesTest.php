@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Integration;
 
+use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\DataValue;
 use DataValues\NumberValue;
 use DataValues\StringValue;
@@ -56,13 +57,13 @@ class RulesTest extends TestCase {
 		$rules = new Rules(
 			new Rule(
 				new EntityCriteria(
-					new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( 'expected' ) ),
-					new StatementEqualityCriterion( new PropertyId( 'P2' ), new NumberValue( 42 ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P1' ), new StringValue( 'expected' ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P2' ), new NumberValue( 42 ) ),
 				),
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'en', 'de' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				),
 				new AliasesSpecList()
@@ -70,8 +71,8 @@ class RulesTest extends TestCase {
 		);
 
 		$item = new Item( null, null, null, new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'expected' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new NumberValue( 42 ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'expected' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new NumberValue( 42 ) ) ),
 		) );
 
 		$item->setLabel( 'en', 'toBeChanged' );
@@ -93,13 +94,13 @@ class RulesTest extends TestCase {
 		$rules = new Rules(
 			new Rule(
 				new EntityCriteria(
-					new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( 'expected' ) ),
-					new StatementEqualityCriterion( new PropertyId( 'P2' ), new NumberValue( 404 ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P1' ), new StringValue( 'expected' ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P2' ), new NumberValue( 404 ) ),
 				),
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'en', 'de' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				),
 				new AliasesSpecList()
@@ -107,8 +108,8 @@ class RulesTest extends TestCase {
 		);
 
 		$item = new Item( null, null, null, new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'expected' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new NumberValue( 42 ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'expected' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new NumberValue( 42 ) ) ),
 		) );
 
 		$item->setLabel( 'en', 'unchanged1' );
@@ -129,41 +130,41 @@ class RulesTest extends TestCase {
 		$rules = new Rules(
 			new Rule(
 				new EntityCriteria(
-					new StatementEqualityCriterion( new PropertyId( 'P3' ), new StringValue( 'matches' ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P3' ), new StringValue( 'matches' ) ),
 				),
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'en' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				),
 				new AliasesSpecList(
 					new TemplatedAliasesSpec(
 						[ 'de', 'nl' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				)
 			),
 			new Rule( // Expected to override the label modification from the previous rule
 				new EntityCriteria(
-					new StatementEqualityCriterion( new PropertyId( 'P2' ), new NumberValue( 42 ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P2' ), new NumberValue( 42 ) ),
 				),
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'en' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				),
 				new AliasesSpecList()
 			),
 			new Rule( // Expected to not override since the criterion does not match
 				new EntityCriteria(
-					new StatementEqualityCriterion( new PropertyId( 'P1' ), new StringValue( '404' ) ),
+					new StatementEqualityCriterion( Compat::newPId( 'P1' ), new StringValue( '404' ) ),
 				),
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'fr' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				),
 				new AliasesSpecList()
@@ -171,10 +172,10 @@ class RulesTest extends TestCase {
 		);
 
 		$item = new Item( null, null, null, new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'expected' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new NumberValue( 42 ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P3' ), new StringValue( 'matches' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( 'expected alias' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'expected' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new NumberValue( 42 ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P3' ), new StringValue( 'matches' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( 'expected alias' ) ) ),
 		) );
 
 		$item->setLabel( 'en', 'toBeChanged' );
@@ -206,11 +207,11 @@ class RulesTest extends TestCase {
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'en', 'de' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					),
 					new TemplatedLabelSpec(
 						[ 'en', 'nl' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P2' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P2' ), null ) )
 					)
 				),
 				new AliasesSpecList()
@@ -218,8 +219,8 @@ class RulesTest extends TestCase {
 		);
 
 		$item = new Item( null, null, null, new StatementList(
-			new Statement( new PropertyValueSnak( new PropertyId( 'P1' ), new StringValue( '111' ) ) ),
-			new Statement( new PropertyValueSnak( new PropertyId( 'P2' ), new StringValue( '222' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P1' ), new StringValue( '111' ) ) ),
+			new Statement( new PropertyValueSnak( Compat::newPId( 'P2' ), new StringValue( '222' ) ) ),
 		) );
 
 		$rules->applyTo( $item );
@@ -242,13 +243,13 @@ class RulesTest extends TestCase {
 				new LabelSpecList(
 					new TemplatedLabelSpec(
 						[ 'en' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				),
 				new AliasesSpecList(
 					new TemplatedAliasesSpec(
 						[ 'en' ],
-						new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+						new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 					)
 				)
 			)
@@ -280,7 +281,7 @@ class RulesTest extends TestCase {
 	}
 
 	private function newStatement( string $pId, DataValue $value, int $rank ): Statement {
-		$statement = new Statement( new PropertyValueSnak( new PropertyId( $pId ), $value ) );
+		$statement = new Statement( new PropertyValueSnak( Compat::newPId( $pId ), $value ) );
 		$statement->setRank( $rank );
 		return $statement;
 	}

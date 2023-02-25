@@ -17,6 +17,10 @@ jobs:
             php: 8.0
           - mw: 'REL1_37'
             php: 8.0
+          - mw: 'REL1_38'
+            php: 8.0
+          - mw: 'REL1_39'
+            php: 8.0
 
     runs-on: ubuntu-latest
 
@@ -124,7 +128,7 @@ jobs:
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_35 AutomatedValues
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_39 AutomatedValues
 
       - uses: actions/checkout@v2
         with:

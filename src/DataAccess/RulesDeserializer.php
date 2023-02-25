@@ -15,7 +15,7 @@ use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedAliasesSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
 use ProfessionalWiki\AutomatedValues\Domain\TemplateSegment;
-use Wikibase\DataModel\Entity\PropertyId;
+use ProfessionalWiki\AutomatedValues\Compat;
 
 class RulesDeserializer {
 
@@ -61,7 +61,7 @@ class RulesDeserializer {
 	private function newEntityCriteria( array $arrayRule ): EntityCriteria {
 		return new EntityCriteria(
 			...array_map(
-				fn( array $criterion ) => new StatementEqualityCriterion( new PropertyId( $criterion['statement'] ), new StringValue( $criterion['equalTo'] ) ),
+				fn( array $criterion ) => new StatementEqualityCriterion( Compat::newPId( $criterion['statement'] ), new StringValue( $criterion['equalTo'] ) ),
 				$arrayRule['when'] ?? []
 			)
 		);
@@ -88,8 +88,8 @@ class RulesDeserializer {
 
 			$segments[] = new TemplateSegment(
 				$template,
-				new PropertyId( $ids[0] ),
-				array_key_exists( 1, $ids ) ? new PropertyId( $ids[1] ) : null
+				Compat::newPId( $ids[0] ),
+				array_key_exists( 1, $ids ) ? Compat::newPId( $ids[1] ) : null
 			);
 		}
 
