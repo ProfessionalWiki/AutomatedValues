@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
+use ProfessionalWiki\AutomatedValues\Compat;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\Domain\Template;
 use ProfessionalWiki\AutomatedValues\Domain\TemplatedLabelSpec;
@@ -21,7 +22,7 @@ class TemplatedLabelSpecTest extends TestCase {
 	public function testEmptyValuesCauseLabelRemoval(): void {
 		$spec = new TemplatedLabelSpec(
 			[ 'en', 'de' ],
-			new Template( new TemplateSegment( '$', new PropertyId( 'P1' ), null ) )
+			new Template( new TemplateSegment( '$', Compat::newPId( 'P1' ), null ) )
 		);
 
 		$labels = new TermList();

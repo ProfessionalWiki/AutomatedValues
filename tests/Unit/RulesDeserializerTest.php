@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\Tests\Unit;
 
+use ProfessionalWiki\AutomatedValues\Compat;
 use DataValues\StringValue;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
@@ -48,7 +49,7 @@ class RulesDeserializerTest extends TestCase {
 			new Rule(
 				new EntityCriteria(
 					new StatementEqualityCriterion(
-						new PropertyId( 'P1' ),
+						Compat::newPId( 'P1' ),
 						new StringValue( 'Q1' )
 					)
 				),
@@ -56,7 +57,7 @@ class RulesDeserializerTest extends TestCase {
 					new TemplatedLabelSpec(
 						[ 'en' ],
 						new Template(
-							new TemplateSegment( '$', new PropertyId( 'P2' ), null ),
+							new TemplateSegment( '$', Compat::newPId( 'P2' ), null ),
 						)
 					)
 				),
@@ -66,7 +67,7 @@ class RulesDeserializerTest extends TestCase {
 			new Rule(
 				new EntityCriteria(
 					new StatementEqualityCriterion(
-						new PropertyId( 'P1' ),
+						Compat::newPId( 'P1' ),
 						new StringValue( 'Q2' )
 					)
 				),
@@ -74,8 +75,8 @@ class RulesDeserializerTest extends TestCase {
 					new TemplatedLabelSpec(
 						self::DEFAULT_LANGUAGE_CODES,
 						new Template(
-							new TemplateSegment( '$ ', new PropertyId( 'P5' ), null ),
-							new TemplateSegment( '$', new PropertyId( 'P6' ), null ),
+							new TemplateSegment( '$ ', Compat::newPId( 'P5' ), null ),
+							new TemplateSegment( '$', Compat::newPId( 'P6' ), null ),
 						)
 					)
 				),
@@ -83,17 +84,17 @@ class RulesDeserializerTest extends TestCase {
 					new TemplatedAliasesSpec(
 						[ 'en' ],
 						new Template(
-							new TemplateSegment( 'The Great ', new PropertyId( 'P7' ), new PropertyId( 'P8' ) ),
-							new TemplateSegment( '$', new PropertyId( 'P7' ), null ),
-							new TemplateSegment( ' $', new PropertyId( 'P7' ), new PropertyId( 'P9' ) ),
+							new TemplateSegment( 'The Great ', Compat::newPId( 'P7' ), Compat::newPId( 'P8' ) ),
+							new TemplateSegment( '$', Compat::newPId( 'P7' ), null ),
+							new TemplateSegment( ' $', Compat::newPId( 'P7' ), Compat::newPId( 'P9' ) ),
 						)
 					),
 					new TemplatedAliasesSpec(
 						[ 'de' ],
 						new Template(
-							new TemplateSegment( 'Der große ', new PropertyId( 'P7' ), new PropertyId( 'P8' ) ),
-							new TemplateSegment( '$', new PropertyId( 'P7' ), null ),
-							new TemplateSegment( ' $', new PropertyId( 'P7' ), new PropertyId( 'P9' ) ),
+							new TemplateSegment( 'Der große ', Compat::newPId( 'P7' ), Compat::newPId( 'P8' ) ),
+							new TemplateSegment( '$', Compat::newPId( 'P7' ), null ),
+							new TemplateSegment( ' $', Compat::newPId( 'P7' ), Compat::newPId( 'P9' ) ),
 						)
 					)
 				)
@@ -106,7 +107,7 @@ class RulesDeserializerTest extends TestCase {
 					new TemplatedLabelSpec(
 						[ 'en' ],
 						new Template(
-							new TemplateSegment( '$', new PropertyId( 'P42' ), null ),
+							new TemplateSegment( '$', Compat::newPId( 'P42' ), null ),
 						)
 					)
 				),
