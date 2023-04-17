@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"automated-values-description": "Automatisk opprettelse av Wikibase-etiketter og -aliaser basert på verdiene til utsagn",
+	"automated-values-config-invalid": "Ugyldig konfigurasjon. Endringene dine ble ikke lagret.",
+	"special-automated-values": "Konfigurasjon for automatiske verdier"
+}
