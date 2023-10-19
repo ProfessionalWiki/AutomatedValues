@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veracious"
+		]
+	},
+	"automated-values-description": "Pembuatan label dan alias Wikibase secara otomatis berdasarkan nilai pernyataan",
+	"automated-values-config-invalid": "Konfigurasi tidak sah. Perubahan Anda tidak tersimpan.",
+	"special-automated-values": "Konfigurasi Nilai Otomatis"
+}
