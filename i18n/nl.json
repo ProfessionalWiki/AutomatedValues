@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"automated-values-description": "Automatische aanmaak van Wikibase-labels en -aliassen op basis van verklaringswaarden",
+	"automated-values-config-invalid": "Ongeldige configuratie. Uw wijzigingen zijn niet opgeslagen.",
+	"special-automated-values": "Instellingen geautomatiseerde waarden"
+}
