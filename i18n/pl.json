@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Msz2001",
+			"WaldiSt"
+		]
+	},
+	"automated-values-description": "Automatyczne tworzenie etykiet i aliasów Wikibase na podstawie wartości deklaracji",
+	"automated-values-config-invalid": "Nieprawidłowa konfiguracja. Twoje zmiany nie zostały zapisane.",
+	"special-automated-values": "Automatyczna konfiguracja wartości"
+}
