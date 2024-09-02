@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"MAGHOI"
+		]
+	},
+	"automated-values-description": "Creación automática de etiquetas e alias de Wikibase baseados nos valores das instrucións",
+	"automated-values-config-invalid": "Configuración non válida. Non se gardaron os teus cambios.",
+	"special-automated-values": "Configuración automatizada de valores"
+}
