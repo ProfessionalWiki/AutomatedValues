@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Yukkuri Shambis",
 			"もなー(偽物)"
 		]
 	},
+	"automated-values-description": "ステートメントの値に基づき、ウィキベースのラベルとエイリアスを自動的に作成します。",
 	"automated-values-config-invalid": "無効な設定です。変更は保存されませんでした。",
 	"special-automated-values": "自動設定"
 }
