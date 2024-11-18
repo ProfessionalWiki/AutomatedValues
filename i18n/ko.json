@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ellif",
+			"Suleiman the Magnificent Television",
 			"Ykhwong"
 		]
 	},
+	"automated-values-description": "설명값에 기초한 위키베이스 표지와 별명의 자동 생성",
 	"automated-values-config-invalid": "유효하지 않은 구성입니다. 변경사항이 저장되지 않았습니다.",
 	"special-automated-values": "자동화된 뜻 설정"
 }
