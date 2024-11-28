@@ -49,9 +49,13 @@ cat <<EOT >> composer.local.json
 EOT
 
 cd extensions
-git clone https://gerrit.wikimedia.org/r/mediawiki/extensions/Wikibase --depth=1 --branch=$MW_BRANCH -j8 && \
-  cd Wikibase && \
-  git submodule set-url view/lib/wikibase-serialization https://github.com/wmde/WikibaseSerializationJavaScript.git && \
-  git submodule set-url view/lib/wikibase-data-values https://github.com/wmde/DataValuesJavaScript.git && \
-  git submodule set-url view/lib/wikibase-data-model https://github.com/wmde/WikibaseDataModelJavaScript.git && \
-  git submodule sync && git submodule init && git submodule update --recursive
+
+git clone https://gerrit.wikimedia.org/r/mediawiki/extensions/Wikibase --depth=1 --branch=$MW_BRANCH -j8
+cd Wikibase
+git submodule set-url view/lib/wikibase-serialization https://github.com/wmde/WikibaseSerializationJavaScript.git
+git submodule set-url view/lib/wikibase-data-values https://github.com/wmde/DataValuesJavaScript.git
+git submodule set-url view/lib/wikibase-data-model https://github.com/wmde/WikibaseDataModelJavaScript.git
+if [ "$MW_BRANCH" == "REL1_35" ]; then
+  git submodule set-url view/lib/wikibase-termbox https://github.com/wmde/wikibase-termbox.git
+fi
+git submodule sync && git submodule init && git submodule update --recursive
