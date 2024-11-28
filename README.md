@@ -4,8 +4,8 @@
 [![codecov](https://codecov.io/gh/ProfessionalWiki/AutomatedValues/branch/master/graph/badge.svg?token=GnOG3FF16Z)](https://codecov.io/gh/ProfessionalWiki/AutomatedValues)
 [![Type Coverage](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues/coverage.svg)](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues)
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues/level.svg)](psalm.xml)
-[![Latest Stable Version](https://poser.pugx.org/professional-wiki/wikibase-automated-values/version.png)](https://packagist.org/packages/professional-wiki/wikibase-automated-values)
-[![Download count](https://poser.pugx.org/professional-wiki/wikibase-automated-values/d/total.png)](https://packagist.org/packages/professional-wiki/wikibase-automated-values)
+[![Latest Stable Version](https://poser.pugx.org/professional-wiki/wikibase-automated-values/v/stable)](https://packagist.org/packages/professional-wiki/wikibase-automated-values)
+[![Download count](https://poser.pugx.org/professional-wiki/wikibase-automated-values/downloads)](https://packagist.org/packages/professional-wiki/wikibase-automated-values)
 [![License](https://img.shields.io/packagist/l/professional-wiki/wikibase-automated-values)](LICENSE)
 
 [Wikibase] extension that allows defining rules to automatically set labels or aliases based on Statement values.
