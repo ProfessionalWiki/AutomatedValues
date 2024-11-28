@@ -11,8 +11,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - mw: 'REL1_35'
-            php: 7.4
           - mw: 'REL1_36'
             php: 8.0
           - mw: 'REL1_37'
@@ -44,7 +42,7 @@ jobs:
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
-          key: mw_${{ matrix.mw }}-php${{ matrix.php }}_v3
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}_v4
 
       - name: Cache Composer cache
         uses: actions/cache@v2
@@ -188,7 +186,7 @@ jobs:
           - name: Install MediaWiki
             if: steps.cache-mediawiki.outputs.cache-hit != 'true'
             working-directory: ~
-            run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_35 AutomatedValues
+            run: bash EarlyCopy/.github/workflows/installMediaWiki.sh REL1_39 AutomatedValues
 
           - uses: actions/checkout@v2
             with:
