@@ -6,13 +6,13 @@
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/AutomatedValues/level.svg)](psalm.xml)
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/wikibase-automated-values/v/stable)](https://packagist.org/packages/professional-wiki/wikibase-automated-values)
 [![Download count](https://poser.pugx.org/professional-wiki/wikibase-automated-values/downloads)](https://packagist.org/packages/professional-wiki/wikibase-automated-values)
-[![License](https://img.shields.io/packagist/l/professional-wiki/wikibase-automated-values)](LICENSE)
+[![License](https://poser.pugx.org/professional-wiki/wikibase-automated-values/license)](LICENSE)
 
 [Wikibase] extension that allows defining rules to automatically set labels or aliases based on Statement values.
 
-[Professional.Wiki] created and maintains Automated Values. We provide [Wikibase hosting], [Wikibase development] and [Wikibase consulting].
+[Professional Wiki] created and maintains Automated Values. We provide [Wikibase hosting], [Wikibase development], and [Wikibase consulting].
 
-Automated Values was created for the Luxembourg Ministry of Culture, who funded initial development.
+Automated Values was created for the Luxembourg Ministry of Culture, which funded initial development.
 
 You can find a demo of this extension at https://automated.wikibase.wiki
 
@@ -302,7 +302,7 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * PHPStan: `vendor/bin/phpstan analyse --configuration=extensions/AutomatedValues/phpstan.neon --memory-limit=2G`
 * Psalm: `php vendor/bin/psalm --config=extensions/AutomatedValues/psalm.xml`
 
-### High level design
+### High-level design
 
 The `Domain/` folder contains the domain model, which is both independent of MediaWiki code and wiki concepts beyond the
 Wikibase DataModel. In other words, the `Domain/` folder is the core of the application, with no outgoing dependencies.
@@ -320,7 +320,7 @@ Initial release for Wikibase 1.35 - 1.37 ([Release announcement], [Demo video]) 
 * Ability to restrict application of Rules to Entities with specific String or EntityId values for a given Property
 * Ability to define Rules on-wiki via the MediaWiki:AutomatedValues page
 
-[Professional.Wiki]: https://professional.wiki
+[Professional Wiki]: https://professional.wiki
 [Wikibase]: https://wikibase.consulting/what-is-wikibase/
 [Wikibase hosting]: https://professional.wiki/en/hosting/wikibase
 [Wikibase development]: https://professional.wiki/en/wikibase-software-development
