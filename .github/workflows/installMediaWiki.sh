@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 MW_BRANCH=$1
 EXTENSION_NAME=$2
 
