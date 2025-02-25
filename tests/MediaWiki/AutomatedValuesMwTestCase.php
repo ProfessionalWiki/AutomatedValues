@@ -20,7 +20,7 @@ abstract class AutomatedValuesMwTestCase extends \MediaWikiIntegrationTestCase {
 
 	private function saveProperty( Property $property ) {
 		$this->insertPage(
-			'Property:' . $property->getId()->serialize(),
+			'Property:' . $property->getId()->getSerialization(),
 			json_encode( $this->getPropertySerializer()->serialize( $property ) )
 		);
 	}
