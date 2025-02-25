@@ -61,7 +61,7 @@ class RulesDeserializer {
 	private function newEntityCriteria( array $arrayRule ): EntityCriteria {
 		return new EntityCriteria(
 			...array_map(
-				fn( array $criterion ) => new StatementEqualityCriterion( Compat::newPId( $criterion['statement'] ), new StringValue( $criterion['equalTo'] ) ),
+				fn ( array $criterion ) => new StatementEqualityCriterion( Compat::newPId( $criterion['statement'] ), new StringValue( $criterion['equalTo'] ) ),
 				$arrayRule['when'] ?? []
 			)
 		);

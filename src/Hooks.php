@@ -18,15 +18,13 @@ class Hooks {
 	public static function onMultiContentSave( RenderedRevision $renderedRevision ): void {
 		try {
 			$content = $renderedRevision->getRevision()->getSlot( 'main' )->getContent();
-		}
-		catch ( RevisionAccessException $ex ) {
+		} catch ( RevisionAccessException $ex ) {
 		}
 
 		if ( isset( $content ) && $content instanceof EntityContent ) {
 			try {
 				$entity = $content->getEntity();
-			}
-			catch ( \Exception $ex ) {
+			} catch ( \Exception $ex ) {
 			}
 
 			if ( isset( $entity ) && $entity instanceof StatementListProvidingEntity ) {
