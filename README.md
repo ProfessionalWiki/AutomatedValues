@@ -186,7 +186,7 @@ Rules are applied in order. In other words, the second Rule can override values 
 
 Platform requirements:
 
-* [PHP] 7.4 or later (tested up to 8.3)
+* [PHP] 7.4 or later (tested up to 8.4)
 * [MediaWiki] 1.35 or later (tested up to 1.43)
 * [Wikibase] 1.35 or later (tested up to 1.43)
 
