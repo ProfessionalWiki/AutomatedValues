@@ -5,8 +5,10 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\AutomatedValues;
 
 use EditPage;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\User\UserIdentity;
 use OutputPage;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
 use Title;
@@ -15,7 +17,7 @@ use Wikibase\Repo\Content\EntityContent;
 
 class Hooks {
 
-	public static function onMultiContentSave( RenderedRevision $renderedRevision ): void {
+	public static function onMultiContentSave( RenderedRevision $renderedRevision, UserIdentity $user ): void {
 		try {
 			$content = $renderedRevision->getRevision()->getSlot( 'main' )->getContent();
 		}
@@ -31,6 +33,12 @@ class Hooks {
 
 			if ( isset( $entity ) && $entity instanceof StatementListProvidingEntity ) {
 				AutomatedValuesFactory::getInstance()->getRulesLookup()->getRules()->applyTo( $entity );
+
+				$u = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
+
+				if ( !$u->isAllowed( 'TODO-wb-editing' ) ) {
+					// TODO: temporarily grant the rights
+				}
 			}
 		}
 	}
