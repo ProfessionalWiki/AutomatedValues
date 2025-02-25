@@ -311,6 +311,14 @@ Wikibase DataModel. In other words, the `Domain/` folder is the core of the appl
 
 ## Release notes
 
+### Version 1.1.0 - 2025-02-25
+
+Feature release with these enhancements:
+
+* Translation updates
+* Removed unused Resource Loader module (minute performance enhancement)
+* Verified support for MediaWiki up to 1.43 and PHP up to 8.4 (1.0.0 is already compatible)
+
 ### Version 1.0.0 - 2022-04-29
 
 Initial release for Wikibase 1.35 - 1.37 ([Release announcement], [Demo video]) with these features:
