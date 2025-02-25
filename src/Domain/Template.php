@@ -41,7 +41,7 @@ class Template {
 	public function supportsMultipleValues(): bool {
 		return count( array_unique(
 				array_map(
-					fn( TemplateSegment $s ) => $s->statementPropertyId,
+					fn ( TemplateSegment $s ) => $s->statementPropertyId,
 					$this->segments
 				)
 			) ) === 1;
@@ -57,7 +57,7 @@ class Template {
 			$values[] = $this->buildValue( new StatementList( $statement ) );
 		}
 
-		return array_filter( $values, fn( string $s ) => $s !== '' );
+		return array_filter( $values, fn ( string $s ) => $s !== '' );
 	}
 
 }

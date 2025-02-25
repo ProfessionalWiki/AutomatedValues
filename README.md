@@ -186,9 +186,9 @@ Rules are applied in order. In other words, the second Rule can override values 
 
 Platform requirements:
 
-* [PHP] 7.4 or later (tested up to 8.0)
-* [MediaWiki] 1.35 or later (tested up to 1.37)
-* [Wikibase] 1.35 or later (tested up to 1.37)
+* [PHP] 7.4 or later (tested up to 8.3)
+* [MediaWiki] 1.35 or later (tested up to 1.43)
+* [Wikibase] 1.35 or later (tested up to 1.43)
 
 The recommended way to install Automated Values is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].

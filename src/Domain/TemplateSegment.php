@@ -51,7 +51,7 @@ class TemplateSegment {
 			$values[] = $this->getValueFromSegment( $statement );
 		}
 
-		return array_filter( $values, fn( $v ) => $v !== null );
+		return array_filter( $values, fn ( $v ) => $v !== null );
 	}
 
 	private function getValueFromSegment( Statement $statement ): ?DataValue {
