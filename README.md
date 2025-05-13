@@ -30,10 +30,10 @@ You can find a demo of this extension at https://automated.wikibase.wiki
 
 The core building block of this extension are so-called "Rules".
 
-You can read the bellow step-by-step explanation or look immediately at [example.json].
+You can read the below step-by-step explanation or look immediately at [example.json].
 
 A Rule consists of zero or more Entity Criteria, which allow you to specify
-which Wikibase entities the Rule applies to. For instance "all entities where P1 is Q1", which might translate to "all entities instanceof Person".
+which Wikibase entities the Rule applies to. For instance, "all entities where P1 is Q1", which might translate to "all entities instanceof Person".
 
 ```json
 {
@@ -46,7 +46,7 @@ which Wikibase entities the Rule applies to. For instance "all entities where P1
 }
 ```
 
-A rule can also have zero or more Build Specifications. These describe how to auto automatically build
+A rule can also have zero or more Build Specifications. These describe how to automatically build
 values on matching Entities, and which languages to update. They are available both for Labels and Aliases.
 
 ```json
@@ -66,10 +66,10 @@ values on matching Entities, and which languages to update. They are available b
 }
 ```
 
-Rules can be defined on page `MediaWiki:AutomatedValues`.  Alternatively they can be defined in LocalSettings.php, see the [PHP Configuration](#php-configuration) section.
+Rules can be defined on page `MediaWiki:AutomatedValues`.  Alternatively, they can be defined in LocalSettings.php, see the [PHP Configuration](#php-configuration) section.
 
-To define rules for your wiki, simply head over to `MediaWiki:AutomatedValues` and create the page. This page only accepts JSON that
-adheres to the [JSON Schema]. If you enter invalid JSON, the page will refuse to save your changes.
+To define rules for your wiki, head to `MediaWiki:AutomatedValues` and create the page. This page only accepts JSON that
+adheres to the [JSON Schema]. The page will refuse to save your changes if you enter invalid JSON.
 
 Editing of pages in the `MediaWiki` namespace, which includes `MediaWiki:AutomatedValues`, is likely restricted to users
 with elevated permissions. By default, MediaWiki restricts editing in this namespace to people with the `editinterface` right.
@@ -79,7 +79,7 @@ You can find a complete and valid example of a list of Rules, that could be plac
 
 ### Supported Entity Criteria
 
-At the moment it is only possible to check equality of statement main values, and only for Properties of type String or EntityId.
+Currently, it is only possible to check equality of statement main values, and only for Properties of type String or EntityId.
 
 A Rule can contain multiple Entity Criteria, in which case they all need to match for the Rule to be applied. A Rule
 can also contain no Entity Criteria, in which case it will be applied to all Entities.
@@ -104,7 +104,7 @@ You can have different Build Specifications for different languages:
 ```
 
 You can also specify `*` instead of a language code, in which case the Build Specification will be applied to all default
-languages. See the [PHP Configuration](#php-configuration) section for how to set the default languages. If the default
+languages. See the [PHP Configuration](#php-configuration) section for instructions on how to set the default languages. If the default
 languages are not set, `*` will be ignored.
 
 ```json
@@ -120,7 +120,7 @@ languages are not set, `*` will be ignored.
 }
 ```
 
-The `$` symbol is replaced by the Main Value of the first Statement with the specified Property. Currently only strings
+The `$` symbol is replaced by the Main Value of the first Statement with the specified Property. Currently, only strings
 are supported. Preferred Statements will be used over those with a Normal rank. If there is no matching Statement, that
 part of the value is omitted. If the resulting value is an empty string, it will be ignored.
 
@@ -193,7 +193,7 @@ Platform requirements:
 The recommended way to install Automated Values is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].
 
-On the commandline, go to your wikis root directory. Then run these two commands:
+On the commandline, go to your wiki's root directory. Then run these two commands:
 
 ```shell script
 COMPOSER=composer.local.json composer require --no-update professional-wiki/wikibase-automated-values:~1.0
