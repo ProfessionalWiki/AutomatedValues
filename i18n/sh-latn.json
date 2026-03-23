@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aca",
 			"Winston Sung"
 		]
 	},
-	"automated-values-config-invalid": "Nevažeća konfiguracija. Nisam sačuvao Vaše promjene."
+	"automated-values-config-invalid": "Neispravna konfiguracija. Vaše izmjene nisu sačuvane."
 }
