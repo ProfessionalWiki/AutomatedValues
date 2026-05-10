@@ -15,9 +15,9 @@ class SpecialAutomatedValues extends SpecialPage {
 	public function execute( $subPage ): void {
 		parent::execute( $subPage );
 
-		$title = \Title::newFromText( 'MediaWiki:AutomatedValues' );
+		$title = \MediaWiki\Title\Title::newFromText( 'MediaWiki:AutomatedValues' );
 
-		if ( $title instanceof \Title ) {
+		if ( $title instanceof \MediaWiki\Title\Title ) {
 			$this->getOutput()->redirect( $title->getFullURL() );
 		}
 	}
