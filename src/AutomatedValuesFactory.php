@@ -11,7 +11,7 @@ use ProfessionalWiki\AutomatedValues\DataAccess\RulesDeserializer;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesLookup;
 use ProfessionalWiki\AutomatedValues\DataAccess\WikiRulesLookup;
-use MediaWiki\Title\Title;
+use Title;
 
 class AutomatedValuesFactory {
 

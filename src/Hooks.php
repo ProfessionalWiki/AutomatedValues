@@ -9,7 +9,7 @@ use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionAccessException;
 use OutputPage;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
-use MediaWiki\Title\Title;
+use Title;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
 use Wikibase\Repo\Content\EntityContent;
 
