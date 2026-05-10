@@ -70,17 +70,13 @@ jobs:
       - name: Run update.php
         run: php maintenance/update.php --quick
 
-      - name: Run PHPUnit
+      - name: Run PHPUnit (MW < master)
+        if: matrix.mw != 'master'
         run: php tests/phpunit/phpunit.php -c extensions/AutomatedValues/
-        if: matrix.php != 7.4
 
-      - name: Run PHPUnit with code coverage
-        run: php tests/phpunit/phpunit.php -c extensions/AutomatedValues/ --coverage-clover coverage.xml
-        if: matrix.php == 7.4
-
-      - name: Upload code coverage
-        run: bash <(curl -s https://codecov.io/bash)
-        if: matrix.php == 7.4
+      - name: Run PHPUnit (MW master)
+        if: matrix.mw == 'master'
+        run: composer phpunit -- -c extensions/AutomatedValues/
 
 
 
