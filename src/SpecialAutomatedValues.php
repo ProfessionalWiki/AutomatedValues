@@ -4,7 +4,8 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues;
 
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
 
 class SpecialAutomatedValues extends SpecialPage {
 
@@ -15,9 +16,9 @@ class SpecialAutomatedValues extends SpecialPage {
 	public function execute( $subPage ): void {
 		parent::execute( $subPage );
 
-		$title = \Title::newFromText( 'MediaWiki:AutomatedValues' );
+		$title = Title::newFromText( 'MediaWiki:AutomatedValues' );
 
-		if ( $title instanceof \Title ) {
+		if ( $title instanceof Title ) {
 			$this->getOutput()->redirect( $title->getFullURL() );
 		}
 	}

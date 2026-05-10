@@ -4,12 +4,12 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues;
 
-use EditPage;
+use MediaWiki\EditPage\EditPage;
+use MediaWiki\Html\Html;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionAccessException;
-use OutputPage;
+use MediaWiki\Title\Title;
 use ProfessionalWiki\AutomatedValues\DataAccess\RulesJsonValidator;
-use Title;
 use Wikibase\DataModel\Entity\StatementListProvidingEntity;
 use Wikibase\Repo\Content\EntityContent;
 
@@ -45,7 +45,7 @@ class Hooks {
 			&& !RulesJsonValidator::newInstance()->validate( $text ) ) {
 
 			// Would be nice to show a more specific error message, but at the moment RulesJsonValidator does not support this.
-			$error = \Html::errorBox( wfMessage( 'automated-values-config-invalid' )->escaped() );
+			$error = Html::errorBox( wfMessage( 'automated-values-config-invalid' )->escaped() );
 		}
 	}
 

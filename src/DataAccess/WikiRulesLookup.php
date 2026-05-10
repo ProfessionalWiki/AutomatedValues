@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues\DataAccess;
 
+use MediaWiki\Content\JsonContent;
 use ProfessionalWiki\AutomatedValues\Domain\Rules;
 
 class WikiRulesLookup implements RulesLookup {
@@ -21,14 +22,14 @@ class WikiRulesLookup implements RulesLookup {
 	public function getRules(): Rules {
 		$content = $this->contentFetcher->getPageContent( 'MediaWiki:' . $this->pageName );
 
-		if ( $content instanceof \JsonContent ) {
+		if ( $content instanceof JsonContent ) {
 			return $this->rulesFromJsonContent( $content );
 		}
 
 		return new Rules();
 	}
 
-	private function rulesFromJsonContent( \JsonContent $content ): Rules {
+	private function rulesFromJsonContent( JsonContent $content ): Rules {
 		return $this->deserializer->deserialize( $content->getText() );
 	}
 
