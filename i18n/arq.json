@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bachounda"
+		]
+	},
+	"automated-values-description": "الخلق التلقائي للوسوم والكنيات تاع Wikibase على حساب قيم البيانات.",
+	"automated-values-config-invalid": "التهيئة مش صحيحة. التبديلات تاعك ما تحفظوش.",
+	"special-automated-values": "تهيئة القيم الآلية"
+}
