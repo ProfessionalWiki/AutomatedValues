@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"automated-values-description": "Automatické vytváranie označení a alternatívnych názvov Wikibase na základe hodnôt tvrdení",
+	"automated-values-config-invalid": "Neplatná konfigurácia. Vaše zmeny neboli uložené.",
+	"special-automated-values": "Konfigurácia rozšírenia Automated Values"
+}
