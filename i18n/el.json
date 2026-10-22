@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jimkats",
 			"Norhorn"
 		]
 	},
+	"automated-values-description": "Αυτόματη δημιουργία ετικετών και αλλωνύμων Wikibase βάσει των τιμών των δηλώσεων",
+	"automated-values-config-invalid": "Μη έγκυρη διαμόρφωση. Οι αλλαγές σας δεν αποθηκεύτηκαν.",
 	"special-automated-values": "Αυτόματη ρύθμιση τιμών"
 }
