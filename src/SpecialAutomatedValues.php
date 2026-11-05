@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\AutomatedValues;
 
+use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
@@ -27,8 +28,8 @@ class SpecialAutomatedValues extends SpecialPage {
 		return 'wikibase';
 	}
 
-	public function getDescription(): string {
-		return $this->msg( 'special-automated-values' )->escaped();
+	public function getDescription(): Message {
+		return $this->msg( 'special-automated-values' );
 	}
 
 }
